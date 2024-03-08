@@ -20,5 +20,10 @@ namespace _240308_Notiz_App_Client
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
