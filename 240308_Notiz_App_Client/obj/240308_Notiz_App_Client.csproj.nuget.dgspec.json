@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\240308_Notiz_App_Client\\240308_Notiz_App_Client.csproj": {}
+    "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\240308_Notiz_App_Client.csproj": {}
   },
   "projects": {
-    "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\240308_Notiz_App_Client\\240308_Notiz_App_Client.csproj": {
+    "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\240308_Notiz_App_Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\240308_Notiz_App_Client\\240308_Notiz_App_Client.csproj",
+        "projectUniqueName": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\240308_Notiz_App_Client.csproj",
         "projectName": "240308_Notiz_App_Client",
-        "projectPath": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\240308_Notiz_App_Client\\240308_Notiz_App_Client.csproj",
+        "projectPath": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\240308_Notiz_App_Client.csproj",
         "packagesPath": "C:\\Users\\paulw\\.nuget\\packages\\",
-        "outputPath": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\240308_Notiz_App_Client\\obj\\",
+        "outputPath": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\paulw\\AppData\\Roaming\\NuGet\\NuGet.Config",
