@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\_Paul_Wasle\4_Klasse\7_Programming and Softwareengeneering\Projekt_Notiz_App\240308_Notiz_App_Client\obj\Debug\net8.0-windows\
+C:\_Paul_Wasle\4_Klasse\7_Programming and Softwareengeneering\Projekt_Notiz_App\POS_Projekt_2024\240308_Notiz_App_Client\obj\Debug\net8.0-windows\
 _240308_Notiz_App_Client
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\_Paul_Wasle\4_Klasse\7_Programming and Softwareengeneering\Projekt_Notiz_App\240308_Notiz_App_Client\App.xaml
-11407045341
+C:\_Paul_Wasle\4_Klasse\7_Programming and Softwareengeneering\Projekt_Notiz_App\POS_Projekt_2024\240308_Notiz_App_Client\App.xaml
+2-165046943
 
-4-1841852605
+5728359752
 198-294894759
-MainWindow.xaml;
+MainWindow.xaml;Notiz.xaml;
 
 False
 

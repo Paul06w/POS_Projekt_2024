@@ -10,16 +10,17 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Neue Notiz" Click="Button_Click"></Button>
+        <Button Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Neue Notiz" Click="ButtonNeueNotiz_Click"></Button>
+        <ScrollViewer Grid.Row="1" Grid.Column="0" x:Name="ScrollViewNotizen" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <WrapPanel x:Name="WrapPanelNotizen" Orientation="Horizontal" Width="700"/>
+        </ScrollViewer>
         
     </Grid>
 </Window>

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_240308_Notiz_App_Client"
         mc:Ignorable="d"
-        Title="Notiz" Height="450" Width="800" Icon="/icon.png">
+        Title="Notiz" Height="400" Width="400" Icon="/icon.png">
     <Grid>
-        
+        <TextBox TextWrapping="Wrap" AcceptsReturn="True" Background="AliceBlue"/>
     </Grid>
 </Window>
