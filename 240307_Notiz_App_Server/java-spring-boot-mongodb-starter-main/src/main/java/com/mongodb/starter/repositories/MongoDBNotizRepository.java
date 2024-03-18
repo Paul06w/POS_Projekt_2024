@@ -40,7 +40,7 @@ public class MongoDBNotizRepository implements NotizRepository {
 
     @PostConstruct
     void init() {
-        notizCollection = client.getDatabase("test").getCollection("notizen", NotizEntity.class);
+        notizCollection = client.getDatabase("app").getCollection("notizen", NotizEntity.class);
     }
 
     @Override

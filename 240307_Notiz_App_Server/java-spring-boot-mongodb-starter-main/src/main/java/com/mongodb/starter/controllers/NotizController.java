@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,12 @@ public class NotizController {
     @ResponseStatus(HttpStatus.CREATED)
     public List<NotizDTO> postNotizen(@RequestBody List<NotizDTO> notizEntities) {
         return notizService.saveAll(notizEntities);
+    }
+
+    @GetMapping("web")
+    public String hello(Model model) {
+        model.addAttribute("message", "Hello, World!");
+        return "index"; // Dies wird auf die HTML-Vorlage "index.html" verweisen
     }
 
     @GetMapping("notizen")
