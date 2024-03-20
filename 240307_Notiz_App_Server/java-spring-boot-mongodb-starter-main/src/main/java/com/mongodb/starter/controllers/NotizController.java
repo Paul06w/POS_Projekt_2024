@@ -35,12 +35,6 @@ public class NotizController {
         return notizService.saveAll(notizEntities);
     }
 
-    @GetMapping("web")
-    public String hello(Model model) {
-        model.addAttribute("message", "Hello, World!");
-        return "index"; // Dies wird auf die HTML-Vorlage "index.html" verweisen
-    }
-
     @GetMapping("notizen")
     public List<NotizDTO> getNotizen() {
         return notizService.findAll();

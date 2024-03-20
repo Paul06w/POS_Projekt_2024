@@ -8,7 +8,7 @@ public class NotizEntity {
     private ObjectId id;
     private String title;
     private String text;
-    private Boolean checked;
+    private Boolean check;
 
     public NotizEntity() {
     }
@@ -17,7 +17,7 @@ public class NotizEntity {
         this.id = id;
         this.title = title;
         this.text = text;
-        this.checked = checked;
+        this.check = checked;
     }
 
     public ObjectId getId() {
@@ -47,18 +47,18 @@ public class NotizEntity {
         return this;
     }
 
-    public Boolean getChecked() {
-        return checked;
+    public Boolean getCheck() {
+        return check;
     }
 
-    public NotizEntity setChecked(Boolean checked) {
-        this.checked = checked;
+    public NotizEntity setCheck(Boolean checked) {
+        this.check = checked;
         return this;
     }
 
     @Override
     public String toString() {
-        return "Notiz{" + "title='" + title + '\'' + ", text='" + text + ", checked='" + checked + '}';
+        return "Notiz{" + "title='" + title + '\'' + ", text='" + text + ", checked='" + check + '}';
     }
 
     @Override
@@ -66,7 +66,7 @@ public class NotizEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         NotizEntity notizEntity = (NotizEntity) o;
-        return Objects.equals(title, notizEntity.title) && Objects.equals(text, notizEntity.text) && Objects.equals(checked, notizEntity.checked);
+        return Objects.equals(title, notizEntity.title) && Objects.equals(text, notizEntity.text) && Objects.equals(check, notizEntity.check);
     }
 
     @Override

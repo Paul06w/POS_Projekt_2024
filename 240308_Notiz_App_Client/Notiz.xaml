@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="Notiz" Height="400" Width="400" Icon="/icon.png">
     <Grid>
-        <TextBox TextWrapping="Wrap" AcceptsReturn="True" Background="AliceBlue"/>
+        <TextBox TextWrapping="Wrap" AcceptsReturn="True" Background="AliceBlue" x:Name="textfield" TextChanged="textfield_TextChanged"/>
     </Grid>
 </Window>
