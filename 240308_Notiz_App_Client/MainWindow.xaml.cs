@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace _240308_Notiz_App_Client
 {
@@ -78,6 +79,7 @@ namespace _240308_Notiz_App_Client
 
         private void AddButton(string buttonText)
         {
+            /*
             Button button = new Button
             {
                 Content = buttonText,
@@ -91,6 +93,103 @@ namespace _240308_Notiz_App_Client
 
             // Füge den Button zum StackPanel in der ScrollView hinzu
             WrapPanelNotizen.Children.Add(button);
+            */
+
+
+
+            // Erstelle ein StackPanel, um die Steuerelemente horizontal anzuordnen
+            StackPanel panel = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                Margin = new Thickness(5)
+            };
+
+            // Erstelle den Button
+            Button button = new Button
+            {
+                Content = buttonText,
+                Width = 100,
+                Height = 30,
+                Margin = new Thickness(0, 0, 5, 0) // Füge einen Abstand zum nächsten Steuerelement hinzu
+            };
+
+            // Füge einen Event Handler für den Button-Click hinzu
+            button.Click += ButtonVorhandeneNotiz_Click;
+
+            // Erstelle die CheckBox
+            CheckBox checkBox = new CheckBox
+            {
+                //Content = "Check",
+                Margin = new Thickness(0, 0, 5, 0) // Füge einen Abstand zum nächsten Steuerelement hinzu
+            };
+
+            checkBox.Checked += CheckBox_Checked;
+
+            System.Windows.Controls.Image image = new System.Windows.Controls.Image();
+            BitmapImage bitmap = new BitmapImage(new Uri("./bin.png", UriKind.Relative));
+            image.Source = bitmap;
+
+            // Erstelle den Button für den Mülleimer
+            Button trashButton = new Button
+            {
+                Content = image,
+                Width = 100,
+                Height = 30
+            };
+
+            // Füge die Steuerelemente zum StackPanel hinzu
+            panel.Children.Add(button);
+            panel.Children.Add(checkBox);
+            panel.Children.Add(trashButton);
+
+            // Füge das StackPanel zum übergeordneten Panel (WrapPanelNotizen) hinzu
+            WrapPanelNotizen.Children.Add(panel);
+
+
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBox c = sender as CheckBox;
+            StackPanel parentPanel = VisualTreeHelper.GetParent(c) as StackPanel;
+
+            if (parentPanel != null)
+            {
+                // Durchlaufen Sie die untergeordneten Elemente des Panels, um den Button zu finden
+                foreach (var child in parentPanel.Children)
+                {
+                    if (child is Button)
+                    {
+                        Button button = child as Button;
+                        
+                        if (c.IsChecked == true)
+                        {
+                            button.IsEnabled = false;
+                        }
+                        else
+                        {
+                            button.IsEnabled = true;
+                        }
+                        
+                        // Hier haben Sie Zugriff auf den Button
+                        // Führen Sie hier die gewünschten Aktionen mit dem Button aus
+                        break; // Beenden Sie die Schleife, sobald der Button gefunden wurde
+                    }
+                }
+            }
+        }
+
+
+
+        private T FindParent<T>(DependencyObject child) where T : DependencyObject
+        {
+            DependencyObject parentObject = VisualTreeHelper.GetParent(child);
+
+            // Wenn das übergeordnete Element null ist oder nicht vom angegebenen Typ ist, durchsuchen Sie weiter
+            if (parentObject == null || parentObject is T)
+                return (T)parentObject;
+            else
+                return FindParent<T>(parentObject);
         }
 
         private void ButtonVorhandeneNotiz_Click(object sender, RoutedEventArgs e)
