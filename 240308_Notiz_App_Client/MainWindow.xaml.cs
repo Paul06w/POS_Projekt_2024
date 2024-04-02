@@ -25,6 +25,10 @@ namespace _240308_Notiz_App_Client
         {
             InitializeComponent();
             LoadData();
+
+            System.Windows.Controls.Image image = new System.Windows.Controls.Image();
+            BitmapImage bitmap = new BitmapImage(new Uri("/bin2.jpg", UriKind.RelativeOrAbsolute));
+            image.Source = bitmap;
         }
 
         public async Task LoadData()
@@ -67,7 +71,7 @@ namespace _240308_Notiz_App_Client
 
         private void ButtonNeueNotiz_Click(object sender, RoutedEventArgs e)
         {
-            string timestamp = DateTime.Now.ToString("dd.MM.yyyy, HH:mm");
+            string timestamp = DateTime.Now.ToString("dd.MM.yyyy, HH:mm:ss");
 
             Notiz n = new Notiz(timestamp, "", false);
             n.Show();
@@ -123,10 +127,11 @@ namespace _240308_Notiz_App_Client
                 Margin = new Thickness(0, 0, 5, 0) // Füge einen Abstand zum nächsten Steuerelement hinzu
             };
 
-            checkBox.Checked += CheckBox_Checked;
+            //checkBox.Checked += CheckBox_Checked;
+            checkBox.Click += CheckBox_Checked;
 
             System.Windows.Controls.Image image = new System.Windows.Controls.Image();
-            BitmapImage bitmap = new BitmapImage(new Uri("./bin.png", UriKind.Relative));
+            BitmapImage bitmap = new BitmapImage(new Uri("/bin2.jpg", UriKind.RelativeOrAbsolute));
             image.Source = bitmap;
 
             // Erstelle den Button für den Mülleimer
@@ -137,10 +142,17 @@ namespace _240308_Notiz_App_Client
                 Height = 30
             };
 
+            System.Windows.Controls.Image trashImage = new System.Windows.Controls.Image
+            {
+                Source = new BitmapImage(new Uri("./bin2.jpg", UriKind.RelativeOrAbsolute)),
+            };
+
             // Füge die Steuerelemente zum StackPanel hinzu
             panel.Children.Add(button);
             panel.Children.Add(checkBox);
-            panel.Children.Add(trashButton);
+            //panel.Children.Add(trashButton);
+            panel.Children.Add(trashImage);
+
 
             // Füge das StackPanel zum übergeordneten Panel (WrapPanelNotizen) hinzu
             WrapPanelNotizen.Children.Add(panel);
