@@ -24,11 +24,12 @@ namespace _240308_Notiz_App_Client
         public MainWindow()
         {
             InitializeComponent();
-            LoadData();
 
-            System.Windows.Controls.Image image = new System.Windows.Controls.Image();
-            BitmapImage bitmap = new BitmapImage(new Uri("/bin2.jpg", UriKind.RelativeOrAbsolute));
-            image.Source = bitmap;
+            /*ImageBrush myBrush = new ImageBrush();
+            myBrush.ImageSource = new BitmapImage(new Uri("./bin2.jpg", UriKind.RelativeOrAbsolute));
+            this.Background = myBrush;*/
+
+            LoadData();
         }
 
         public async Task LoadData()
@@ -105,16 +106,18 @@ namespace _240308_Notiz_App_Client
             StackPanel panel = new StackPanel
             {
                 Orientation = Orientation.Horizontal,
-                Margin = new Thickness(5)
+                Margin = new Thickness(5),
+                Background = new SolidColorBrush(Colors.LightBlue),
             };
 
             // Erstelle den Button
             Button button = new Button
             {
                 Content = buttonText,
-                Width = 100,
-                Height = 30,
-                Margin = new Thickness(0, 0, 5, 0) // Füge einen Abstand zum nächsten Steuerelement hinzu
+                Background = new SolidColorBrush(Colors.LightBlue),
+                Width = 150,
+                Height = 50,
+                Margin = new Thickness(3, 3, 5, 3) // Füge einen Abstand zum nächsten Steuerelement hinzu
             };
 
             // Füge einen Event Handler für den Button-Click hinzu
@@ -130,17 +133,17 @@ namespace _240308_Notiz_App_Client
             //checkBox.Checked += CheckBox_Checked;
             checkBox.Click += CheckBox_Checked;
 
-            System.Windows.Controls.Image image = new System.Windows.Controls.Image();
-            BitmapImage bitmap = new BitmapImage(new Uri("/bin2.jpg", UriKind.RelativeOrAbsolute));
-            image.Source = bitmap;
-
+            ImageBrush myBrush = new ImageBrush();
+            myBrush.ImageSource = new BitmapImage(new Uri("./bin.png", UriKind.RelativeOrAbsolute));
             // Erstelle den Button für den Mülleimer
             Button trashButton = new Button
             {
-                Content = image,
-                Width = 100,
-                Height = 30
+                Width = 30,
+                Height = 30,
+                Background = myBrush
             };
+
+            trashButton.Click += TrashButton_Click;
 
             System.Windows.Controls.Image trashImage = new System.Windows.Controls.Image
             {
@@ -150,14 +153,42 @@ namespace _240308_Notiz_App_Client
             // Füge die Steuerelemente zum StackPanel hinzu
             panel.Children.Add(button);
             panel.Children.Add(checkBox);
-            //panel.Children.Add(trashButton);
-            panel.Children.Add(trashImage);
+            panel.Children.Add(trashButton);
+            //panel.Children.Add(trashImage);
 
 
             // Füge das StackPanel zum übergeordneten Panel (WrapPanelNotizen) hinzu
             WrapPanelNotizen.Children.Add(panel);
 
 
+        }
+
+        private void TrashButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button c = sender as Button;
+            StackPanel parentPanel = VisualTreeHelper.GetParent(c) as StackPanel;
+
+            parentPanel.Visibility = Visibility.Collapsed;
+
+            /*if (parentPanel != null)
+            {
+                // Durchlaufen Sie die untergeordneten Elemente des Panels, um den Button zu finden
+                foreach (var child in parentPanel.Children)
+                {
+                    if (child is Button)
+                    {
+                        Button button = child as Button;
+
+                        
+
+                        button.Visibility = Visibility.Collapsed;
+
+                        // Hier haben Sie Zugriff auf den Button
+                        // Führen Sie hier die gewünschten Aktionen mit dem Button aus
+                        break; // Beenden Sie die Schleife, sobald der Button gefunden wurde
+                    }
+                }
+            }*/
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
