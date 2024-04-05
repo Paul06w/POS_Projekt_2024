@@ -106,18 +106,25 @@ namespace _240308_Notiz_App_Client
             {
                 Orientation = Orientation.Horizontal,
                 Margin = new Thickness(5),
-                Background = new SolidColorBrush(Colors.LightBlue),
+                //Background = new SolidColorBrush(Colors.LightBlue),
             };
+
+            ImageBrush brush = new ImageBrush();
+            brush.ImageSource = new BitmapImage(new Uri("./notiz.png", UriKind.RelativeOrAbsolute));
 
             // Erstelle den Button
             Button button = new Button
             {
                 Content = buttonText,
-                Background = new SolidColorBrush(Colors.LightBlue),
+                Background = brush,
                 Width = 150,
-                Height = 50,
-                Margin = new Thickness(3, 3, 5, 3) // Füge einen Abstand zum nächsten Steuerelement hinzu
+                Height = 150,
+                Margin = new Thickness(3, 3, 5, 3), // Füge einen Abstand zum nächsten Steuerelement hinzu
+                BorderBrush = new SolidColorBrush(Colors.White)
             };
+
+            ControlTemplate buttonTemplate = (ControlTemplate)FindResource("NoMouseOverButtonTemplate");
+            button.Template = buttonTemplate;
 
             // Füge einen Event Handler für den Button-Click hinzu
             button.Click += ButtonVorhandeneNotiz_Click;
@@ -125,8 +132,13 @@ namespace _240308_Notiz_App_Client
 
             Image image = new Image
             {
-                Source = new BitmapImage(new Uri("/notiz.png", UriKind.RelativeOrAbsolute))
+                Source = new BitmapImage(new Uri("/notiz.png", UriKind.RelativeOrAbsolute)),
+                Width = 50,
+                Height = 50,
             };
+
+            image.MouseLeftButtonUp += ButtonVorhandeneNotiz_Click;
+            image.MouseEnter += ButtonVorhandeneNotiz_Click;
 
 
             // Erstelle die CheckBox
@@ -146,9 +158,11 @@ namespace _240308_Notiz_App_Client
             {
                 Width = 30,
                 Height = 30,
-                Background = myBrush
+                Background = myBrush,
+                BorderBrush = new SolidColorBrush(Colors.White)
             };
 
+            trashButton.Template = buttonTemplate;
             trashButton.Click += TrashButton_Click;
 
             System.Windows.Controls.Image trashImage = new System.Windows.Controls.Image
@@ -157,7 +171,7 @@ namespace _240308_Notiz_App_Client
             };
 
             // Füge die Steuerelemente zum StackPanel hinzu
-            panel.Children.Add(image);
+            //panel.Children.Add(image);
             panel.Children.Add(button);
             panel.Children.Add(checkBox);
             panel.Children.Add(trashButton);
