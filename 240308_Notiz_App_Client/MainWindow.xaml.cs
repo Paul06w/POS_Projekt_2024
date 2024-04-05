@@ -69,19 +69,26 @@ namespace _240308_Notiz_App_Client
 
 
 
-        private void ButtonNeueNotiz_Click(object sender, RoutedEventArgs e)
+        private async void ButtonNeueNotiz_Click(object sender, RoutedEventArgs e)
         {
             string timestamp = DateTime.Now.ToString("dd.MM.yyyy, HH:mm:ss");
 
             Notiz n = new Notiz(timestamp, "", false);
             n.Show();
 
+            string title = DateTime.Now.ToString(timestamp);
+            string text = "";
+            bool check = false;
+
+            string json = $"{{\"title\":\"{title}\",\"text\":\"{text}\",\"check\":{check.ToString().ToLower()}}}";
+            await SendPostRequest(json);
+
             AddButton(DateTime.Now.ToString(timestamp));
             notizen.Add(n);
 
         }
 
-        private void AddButton(string buttonText)
+        private async void AddButton(string buttonText)
         {
             /*
             Button button = new Button
@@ -184,10 +191,64 @@ namespace _240308_Notiz_App_Client
 
         }
 
-        private void TrashButton_Click(object sender, RoutedEventArgs e)
+        private async Task SendPostRequest(string json)
+        {
+            try
+            {
+                // URL des Spring Boot-Endpunkts
+                string url = "http://10.10.3.7:8080/api/notiz";
+
+                // Daten, die Sie im Request-Body senden möchten
+                //string jsonData = "{\"key1\":\"value1\",\"key2\":\"value2\"}";
+
+                // Erstellen des HttpClient-Objekts
+                using (HttpClient client = new HttpClient())
+                {
+                    // Konfigurieren des Request-Headers (falls erforderlich)
+                    // client.DefaultRequestHeaders.Add("HeaderName", "HeaderValue");
+
+                    // Erstellen des HttpRequestMessage-Objekts
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, url);
+
+                    // Hinzufügen der Daten zum Request-Body
+                    request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    // Senden der Anfrage und Warten auf die Antwort
+                    HttpResponseMessage response = await client.SendAsync(request);
+
+                    // Überprüfen des Antwortstatus
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.WriteLine("POST-Anfrage erfolgreich gesendet.");
+                        // Wenn Sie auf die Antwort zugreifen möchten:
+                        // string responseBody = await response.Content.ReadAsStringAsync();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Fehler bei der POST-Anfrage. Statuscode: {response.StatusCode}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fehler beim Senden der POST-Anfrage: {ex.Message}");
+            }
+        }
+
+        private async void TrashButton_Click(object sender, RoutedEventArgs e)
         {
             Button c = sender as Button;
             StackPanel parentPanel = VisualTreeHelper.GetParent(c) as StackPanel;
+
+            
+            foreach(Notiz n in notizen)
+            {
+                if (c.Content.ToString() == n.gstitle)
+                {
+                    await SendDeleteRequest(n.gsid);
+                }
+            }
+            
 
             parentPanel.Visibility = Visibility.Collapsed;
 
@@ -210,6 +271,40 @@ namespace _240308_Notiz_App_Client
                     }
                 }
             }*/
+        }
+
+
+        private async Task SendDeleteRequest(string id)
+        {
+            try
+            {
+                // URL des Spring Boot-Endpunkts
+                string url = "http://10.10.3.7:8080/api/notiz/" + id; // Beispiel-URL
+
+                // Erstellen des HttpClient-Objekts
+                using (HttpClient client = new HttpClient())
+                {
+                    // Erstellen des HttpRequestMessage-Objekts
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, url);
+
+                    // Senden der Anfrage und Warten auf die Antwort
+                    HttpResponseMessage response = await client.SendAsync(request);
+
+                    // Überprüfen des Antwortstatus
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.WriteLine("DELETE-Anfrage erfolgreich gesendet.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Fehler bei der DELETE-Anfrage. Statuscode: {response.StatusCode}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fehler beim Senden der DELETE-Anfrage: {ex.Message}");
+            }
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
