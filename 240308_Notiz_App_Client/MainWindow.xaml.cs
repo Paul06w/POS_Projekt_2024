@@ -10,7 +10,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace _240308_Notiz_App_Client
 {
@@ -123,6 +122,13 @@ namespace _240308_Notiz_App_Client
             // Füge einen Event Handler für den Button-Click hinzu
             button.Click += ButtonVorhandeneNotiz_Click;
 
+
+            Image image = new Image
+            {
+                Source = new BitmapImage(new Uri("/notiz.png", UriKind.RelativeOrAbsolute))
+            };
+
+
             // Erstelle die CheckBox
             CheckBox checkBox = new CheckBox
             {
@@ -151,6 +157,7 @@ namespace _240308_Notiz_App_Client
             };
 
             // Füge die Steuerelemente zum StackPanel hinzu
+            panel.Children.Add(image);
             panel.Children.Add(button);
             panel.Children.Add(checkBox);
             panel.Children.Add(trashButton);
