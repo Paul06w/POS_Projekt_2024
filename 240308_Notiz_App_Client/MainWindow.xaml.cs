@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Windows;
@@ -39,7 +40,53 @@ namespace _240308_Notiz_App_Client
             foreach (Notiz notiz in notizen)
             {
                 AddButton(notiz.gstitle);
+                
+                
+                if(notiz.gscheck == true)
+                {
+                    WrapPanel wp = WrapPanelNotizen as WrapPanel;
+                    if (wp != null)
+                    {
+                        // Durchlaufen Sie die untergeordneten Elemente des Panels, um den Button zu finden
+                        foreach (var child in wp.Children)
+                        {
+                            if (child is StackPanel)
+                            {
+                                StackPanel stackp = child as StackPanel;
+
+                                foreach(var childsp in stackp.Children)
+                                {
+                                    if (childsp is Button)
+                                    {
+                                        Button b = childsp as Button;
+
+                                        if(b.Content != null)
+                                        {
+                                            if (b.Content.ToString() == notiz.gstitle)
+                                            {
+                                                foreach (var child2 in stackp.Children)
+                                                {
+                                                    if (child is CheckBox)
+                                                    {
+                                                        CheckBox c = child as CheckBox;
+
+                                                        c.IsChecked = true;
+                                                    }
+                                                }
+                                            }
+                                        }                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
+        }
+
+        public void CheckNotiz()
+        {
+
         }
 
         public async Task<List<Notiz>> GetNotizenAsync(string url)
@@ -84,7 +131,9 @@ namespace _240308_Notiz_App_Client
             await SendPostRequest(json);
 
             AddButton(DateTime.Now.ToString(timestamp));
-            notizen.Add(n);
+            //notizen.Add(n);
+            notizen.Clear();
+            notizen = await GetNotizenAsync("http://10.10.3.7:8080/api/notizen");
 
         }
 
@@ -235,20 +284,92 @@ namespace _240308_Notiz_App_Client
             }
         }
 
+
+
+        private async Task SendPutRequest(string json)
+        {
+            try
+            {
+                // URL des Spring Boot-Endpunkts
+                string url = "http://10.10.3.7:8080/api/notiz";
+
+                // Daten, die Sie im Request-Body senden möchten
+                //string jsonData = "{\"key1\":\"value1\",\"key2\":\"value2\"}";
+
+                // Erstellen des HttpClient-Objekts
+                using (HttpClient client = new HttpClient())
+                {
+                    // Konfigurieren des Request-Headers (falls erforderlich)
+                    // client.DefaultRequestHeaders.Add("HeaderName", "HeaderValue");
+
+                    // Erstellen des HttpRequestMessage-Objekts
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, url);
+
+                    // Hinzufügen der Daten zum Request-Body
+                    request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    // Senden der Anfrage und Warten auf die Antwort
+                    HttpResponseMessage response = await client.SendAsync(request);
+
+                    // Überprüfen des Antwortstatus
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.WriteLine("POST-Anfrage erfolgreich gesendet.");
+                        // Wenn Sie auf die Antwort zugreifen möchten:
+                        // string responseBody = await response.Content.ReadAsStringAsync();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Fehler bei der POST-Anfrage. Statuscode: {response.StatusCode}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fehler beim Senden der POST-Anfrage: {ex.Message}");
+            }
+        }
+
+
+
         private async void TrashButton_Click(object sender, RoutedEventArgs e)
         {
             Button c = sender as Button;
             StackPanel parentPanel = VisualTreeHelper.GetParent(c) as StackPanel;
 
             
-            foreach(Notiz n in notizen)
+            /*foreach(Notiz n in notizen)
             {
                 if (c.Content.ToString() == n.gstitle)
                 {
                     await SendDeleteRequest(n.gsid);
                 }
+            }*/
+
+            if (parentPanel != null)
+            {
+                // Durchlaufen Sie die untergeordneten Elemente des Panels, um den Button zu finden
+                foreach (var child in parentPanel.Children)
+                {
+                    if (child is Button)
+                    {
+                        Button button = child as Button;
+
+                        foreach (Notiz n in notizen)
+                        {
+                            if (button.Content.ToString() == n.gstitle)
+                            {
+                                await SendDeleteRequest(n.gsid);
+                            }
+                        }
+
+                        // Hier haben Sie Zugriff auf den Button
+                        // Führen Sie hier die gewünschten Aktionen mit dem Button aus
+                        break; // Beenden Sie die Schleife, sobald der Button gefunden wurde
+                    }
+                }
             }
-            
+
 
             parentPanel.Visibility = Visibility.Collapsed;
 
