@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -37,6 +38,11 @@ namespace _240308_Notiz_App_Client
             string url = "http://10.10.3.7:8080/api/notizen";
 
             notizen = await GetNotizenAsync(url);
+            foreach (Notiz n in notizen)
+            {
+                n.Replace();
+            }
+
             foreach (Notiz notiz in notizen)
             {
                 AddButton(notiz.gstitle);
@@ -66,9 +72,9 @@ namespace _240308_Notiz_App_Client
                                             {
                                                 foreach (var child2 in stackp.Children)
                                                 {
-                                                    if (child is CheckBox)
+                                                    if (child2 is CheckBox)
                                                     {
-                                                        CheckBox c = child as CheckBox;
+                                                        CheckBox c = child2 as CheckBox;
 
                                                         c.IsChecked = true;
                                                     }
@@ -100,9 +106,14 @@ namespace _240308_Notiz_App_Client
                 if (response.IsSuccessStatusCode)
                 {
                     string responseData = await response.Content.ReadAsStringAsync();
+                    //responseData = responseData.Replace(";", "\r\n");
 
                     // Deserialisieren des JSON-Strings in eine Liste von Notiz-Objekten
                     notizen = JsonSerializer.Deserialize<List<Notiz>>(responseData);
+                    foreach(Notiz n in notizen)
+                    {
+                        n.Replace();
+                    }
                 }
                 else
                 {
@@ -303,7 +314,7 @@ namespace _240308_Notiz_App_Client
                     // client.DefaultRequestHeaders.Add("HeaderName", "HeaderValue");
 
                     // Erstellen des HttpRequestMessage-Objekts
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, url);
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, url);
 
                     // Hinzufügen der Daten zum Request-Body
                     request.Content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -314,19 +325,19 @@ namespace _240308_Notiz_App_Client
                     // Überprüfen des Antwortstatus
                     if (response.IsSuccessStatusCode)
                     {
-                        Console.WriteLine("POST-Anfrage erfolgreich gesendet.");
+                        Console.WriteLine("PUT-Anfrage erfolgreich gesendet.");
                         // Wenn Sie auf die Antwort zugreifen möchten:
                         // string responseBody = await response.Content.ReadAsStringAsync();
                     }
                     else
                     {
-                        Console.WriteLine($"Fehler bei der POST-Anfrage. Statuscode: {response.StatusCode}");
+                        Console.WriteLine($"Fehler bei der PUT-Anfrage. Statuscode: {response.StatusCode}");
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Fehler beim Senden der POST-Anfrage: {ex.Message}");
+                Console.WriteLine($"Fehler beim Senden der PUT-Anfrage: {ex.Message}");
             }
         }
 
@@ -428,7 +439,7 @@ namespace _240308_Notiz_App_Client
             }
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        private async void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox c = sender as CheckBox;
             StackPanel parentPanel = VisualTreeHelper.GetParent(c) as StackPanel;
@@ -445,10 +456,28 @@ namespace _240308_Notiz_App_Client
                         if (c.IsChecked == true)
                         {
                             button.IsEnabled = false;
+                            foreach(Notiz n in notizen)
+                            {
+                                if(n.gstitle == button.Content.ToString())
+                                {
+                                    n.gscheck = true;
+                                    string json = $"{{\"id\":\"{n.gsid}\",\"title\":\"{n.gstitle}\",\"text\":\"{n.gstext}\",\"check\":{n.gscheck.ToString().ToLower()}}}";
+                                    await SendPutRequest(json);
+                                }
+                            }
                         }
                         else
                         {
                             button.IsEnabled = true;
+                            foreach (Notiz n in notizen)
+                            {
+                                if (n.gstitle == button.Content.ToString())
+                                {
+                                    n.gscheck = false;
+                                    string json = $"{{\"id\":\"{n.gsid}\",\"title\":\"{n.gstitle}\",\"text\":\"{n.gstext}\",\"check\":{n.gscheck.ToString().ToLower()}}}";
+                                    await SendPutRequest(json);
+                                }
+                            }
                         }
                         
                         // Hier haben Sie Zugriff auf den Button
@@ -461,7 +490,7 @@ namespace _240308_Notiz_App_Client
 
 
 
-        private T FindParent<T>(DependencyObject child) where T : DependencyObject
+        /*private T FindParent<T>(DependencyObject child) where T : DependencyObject
         {
             DependencyObject parentObject = VisualTreeHelper.GetParent(child);
 
@@ -470,7 +499,7 @@ namespace _240308_Notiz_App_Client
                 return (T)parentObject;
             else
                 return FindParent<T>(parentObject);
-        }
+        }*/
 
         private void ButtonVorhandeneNotiz_Click(object sender, RoutedEventArgs e)
         {
@@ -497,7 +526,7 @@ namespace _240308_Notiz_App_Client
                 {
                     if (button.Content.ToString() == n.gstitle)
                     {
-                        Notiz no = new Notiz(n.gstitle, n.gstext, n.gscheck);
+                        Notiz no = new Notiz(n.gsid, n.gstitle, n.gstext, n.gscheck);
                         no.Show();
                         notizenneu.Add(no); // Hinzufügen zur neuen Liste
                     }
@@ -519,6 +548,13 @@ namespace _240308_Notiz_App_Client
                 notizen = notizenneu;
             }
 
+        }
+
+
+        public async void TextChanged(string text, Notiz notiz)
+        {
+            string json = $"{{\"id\":\"{notiz.gsid}\",\"title\":\"{notiz.gstitle}\",\"text\":\"{notiz.gstext}\",\"check\":{notiz.gscheck.ToString().ToLower()}}}";
+            await SendPutRequest(json);
         }
     }
 }
