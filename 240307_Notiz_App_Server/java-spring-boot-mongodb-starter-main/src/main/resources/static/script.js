@@ -14,10 +14,18 @@ function updateStorage(){
 createBtn.addEventListener("click", ()=>{
     let inputBox = document. createElement("p");
     let img = document.createElement("img");
+    let checkbox = document.createElement("input");
+
     inputBox.className = "input-box";
     inputBox. setAttribute("contenteditable", "true");
+
     img.src = "/delete.png";
+
+    checkbox.type = "checkbox";
+
     notesContainer.appendChild(inputBox).appendChild(img);
+
+    //img.insertAdjacentElement("afterend", checkbox);
 })
 
 notesContainer.addEventListener("click", function(e) {
@@ -42,7 +50,23 @@ document. addEventListener("keydown", event => {
     }
 })
 
+function addSection(id, title, text, check){
+    let inputBox = document. createElement("p");
+    let img = document.createElement("img");
+    let checkbox = document.createElement("input");
 
+    inputBox.className = "input-box";
+    inputBox. setAttribute("contenteditable", "true");
+
+    img.src = "/delete.png";
+
+    checkbox.type = "checkbox";
+
+
+    inputBox.textContent = text.replace(/;/g, "<br><br>");
+
+    notesContainer.appendChild(inputBox).appendChild(img);
+}
 
 
 
@@ -59,9 +83,10 @@ async function fetchNotesFromServer() {
             // Anzeigen der Notizen im Notiz-Container
             notesContainer.innerHTML = '';
             notesData.forEach(note => {
-                const noteElement = document.createElement("p");
-                noteElement.textContent = note.content;
-                notesContainer.appendChild(noteElement);
+                //const noteElement = document.createElement("p");
+                addSection(note.id, note.title, note.text, note.check)
+                //noteElement.textContent = note.title;
+                //notesContainer.appendChild(noteElement);
             });
         } else {
             // Fehlerbehandlung, wenn die Anfrage fehlschlägt

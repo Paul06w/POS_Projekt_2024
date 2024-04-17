@@ -70,7 +70,7 @@ namespace _240308_Notiz_App_Client
 
         public string gstext
         {
-            get { return text; }
+            get { return text.Replace("\r\n", ";"); }
             set { text = value; }
         }
 
