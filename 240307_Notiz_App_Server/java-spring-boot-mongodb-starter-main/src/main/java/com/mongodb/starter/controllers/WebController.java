@@ -12,8 +12,8 @@ import java.net.InetAddress;
 public class WebController {
 
     @GetMapping("/")
-    public String index() {
-        return "index";
+    public String index2() {
+        return "index2";
     }
 
 }
