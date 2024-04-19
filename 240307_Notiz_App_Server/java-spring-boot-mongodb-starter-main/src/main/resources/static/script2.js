@@ -7,7 +7,18 @@ const addBox = document.querySelector(".add-box"),
     addBtn = popupBox.querySelector("button");
 const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
+
+
+//showNotes();
+//localStorage.setItem("notes", JSON.stringify(notes));
 const notes = JSON.parse(localStorage.getItem("notes") || "[]");
+window.onload = function() {
+    localStorage.clear();
+    fetchNotesFromServer();
+
+    showNotes();
+};
+
 let isUpdate = false, updateId;
 addBox.addEventListener("click", () => {
     popupTitle.innerText = "Add a new Note";
@@ -95,5 +106,45 @@ addBtn.addEventListener("click", e => {
         closeIcon.click();
     }
 });
+
+
+
+
+async function fetchNotesFromServer() {
+    try {
+        // Senden einer GET-Anfrage an den Server
+        const response = await fetch('http://10.10.3.7:8080/api/notizen');
+
+        // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200)
+        if (response.ok) {
+            // Konvertieren der Antwort in JSON
+            const notesData = await response.json();
+
+            // Anzeigen der Notizen im Notiz-Container
+            notesData.forEach(note => {
+                //const noteElement = document.createElement("p");
+                //addSection(note.id, note.title, note.text, note.check)
+                //noteElement.textContent = note.title;
+                //notesContainer.appendChild(noteElement);
+                let title = note.title;
+                let description = note.text;
+                let date = note.title;
+                let currentDate = new Date(),
+                    month = months[currentDate.getMonth()],
+                    day = currentDate.getDate(),
+                    year = currentDate.getFullYear();
+                let noteInfo = {title, description, date: `${month} ${day}, ${year}`}
+                notes.push(noteInfo);
+                localStorage.setItem("notes", JSON.stringify(notes));
+
+            });
+        } else {
+            // Fehlerbehandlung, wenn die Anfrage fehlschlägt
+            console.error('Fehler beim Abrufen der Notizen. Statuscode: ' + response.status);
+        }
+    } catch (error) {
+        console.error('Fehler beim Abrufen der Notizen:', error);
+    }
+}
 
 
