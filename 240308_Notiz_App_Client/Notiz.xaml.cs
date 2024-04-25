@@ -33,11 +33,13 @@ namespace _240308_Notiz_App_Client
             InitializeComponent();
         }
 
+        private string crlf = "\n";
+
         public Notiz(string timestamp, string text, bool check)
         {
             InitializeComponent();
             title = timestamp;
-            this.text = text.Replace(";", "\r\n");
+            this.text = text.Replace(";", crlf);
             this.check = check;
             textfield.Text = text;
 
@@ -49,7 +51,7 @@ namespace _240308_Notiz_App_Client
             InitializeComponent();
             this.id = id;
             title = timestamp;
-            this.text = text.Replace(";", "\r\n");
+            this.text = text.Replace(";", crlf);
             this.check = check;
             textfield.Text = text;
 
@@ -70,7 +72,7 @@ namespace _240308_Notiz_App_Client
 
         public string gstext
         {
-            get { return text.Replace("\r\n", ";"); }
+            get { return text.Replace(crlf, ";"); }
             set { text = value; }
         }
 
@@ -136,7 +138,7 @@ namespace _240308_Notiz_App_Client
         {
             //string json = $"{{\"id\":\"{id}\",\"title\":\"{title}\",\"text\":\"{text}\",\"check\":{check.ToString().ToLower()}}}";
             //string json = JsonSerializer.Serialize(this);
-            string extratext = text.Replace("\r\n", ";");
+            string extratext = text.Replace(crlf, ";");
             string json = $"{{\"id\":\"{id}\",\"title\":\"{title}\",\"text\":\"{extratext}\",\"check\":{check.ToString().ToLower()}}}";
             //string json = JsonConvert.SerializeObject(this);
             await SendPutRequest(json);
@@ -144,7 +146,7 @@ namespace _240308_Notiz_App_Client
 
         public void Replace()
         {
-            text = text.Replace(";", "\r\n");
+            text = text.Replace(";", crlf);
         }
     }
 }
