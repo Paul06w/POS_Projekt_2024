@@ -33,7 +33,7 @@ namespace _240308_Notiz_App_Client
             InitializeComponent();
         }
 
-        private string crlf = "\n";
+        private string crlf = "\r\n";
 
         public Notiz(string timestamp, string text, bool check)
         {

@@ -526,7 +526,7 @@ namespace _240308_Notiz_App_Client
                 {
                     if (button.Content.ToString() == n.gstitle)
                     {
-                        Notiz no = new Notiz(n.gsid, n.gstitle, n.gstext, n.gscheck);
+                        Notiz no = new Notiz(n.gsid, n.gstitle, n.gstext.Replace(";", "\r\n"), n.gscheck);
                         no.Show();
                         notizenneu.Add(no); // Hinzufügen zur neuen Liste
                     }
