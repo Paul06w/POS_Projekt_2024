@@ -11,13 +11,17 @@ const months = ["January", "February", "March", "April", "May", "June", "July",
 
 //showNotes();
 //localStorage.setItem("notes", JSON.stringify(notes));
-const notes = JSON.parse(localStorage.getItem("notes") || "[]");
-window.onload = function() {
-    localStorage.clear();
-    fetchNotesFromServer();
 
-    showNotes();
-};
+
+localStorage.clear();
+fetchNotesFromServer();
+
+showNotes();
+
+const notes = JSON.parse(localStorage.getItem("notes") || "[]");
+
+
+
 
 let isUpdate = false, updateId;
 addBox.addEventListener("click", () => {
@@ -138,6 +142,7 @@ async function fetchNotesFromServer() {
                 localStorage.setItem("notes", JSON.stringify(notes));
 
             });
+
         } else {
             // Fehlerbehandlung, wenn die Anfrage fehlschlägt
             console.error('Fehler beim Abrufen der Notizen. Statuscode: ' + response.status);
