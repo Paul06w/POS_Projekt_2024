@@ -12,15 +12,11 @@ const months = ["January", "February", "March", "April", "May", "June", "July",
 //showNotes();
 //localStorage.setItem("notes", JSON.stringify(notes));
 
-
 localStorage.clear();
-fetchNotesFromServer();
-
-showNotes();
-
 const notes = JSON.parse(localStorage.getItem("notes") || "[]");
 
-
+localStorage.clear();
+fetchNotesFromServer().then(r => showNotes());
 
 
 let isUpdate = false, updateId;
@@ -45,12 +41,13 @@ function showNotes() {
         let liTag = `<li class="note">
                         <div class="details">
                             <input type="checkbox" id="checkbox-${id}" class="note-checkbox" ${note.checked ? 'checked' : ''}>
-                            <label for="checkbox-${id}" class="checkbox-label">${note.title}</label>
+                            <!-- <label for="checkbox-${id}" class="checkbox-label">${note.title}</label>-->
                             <!--<p>${note.title}</p>-->
                             <span>${filterDesc}</span>
                         </div>
                         <div class="bottom-content">
-                            <span>${note.date}</span>
+                            <!--<span>${note.date}</span>-->
+                            <span>${note.title}</span>
                             <div class="settings">
                                 <i onclick="showMenu(this)" class="uil uil-ellipsis-h"></i>
                                 <ul class="menu">
@@ -131,7 +128,7 @@ async function fetchNotesFromServer() {
                 //noteElement.textContent = note.title;
                 //notesContainer.appendChild(noteElement);
                 let title = note.title;
-                let description = note.text;
+                let description = note.text.replace(/;/g, "\n");
                 let date = note.title;
                 let currentDate = new Date(),
                     month = months[currentDate.getMonth()],
