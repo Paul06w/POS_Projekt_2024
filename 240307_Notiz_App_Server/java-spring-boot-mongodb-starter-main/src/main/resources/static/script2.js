@@ -1,3 +1,5 @@
+//import axios from 'axios';
+
 const addBox = document.querySelector(".add-box"),
     popupBox = document.querySelector(".popup-box"),
     popupTitle = popupBox.querySelector("header p"),
@@ -74,6 +76,7 @@ function deleteNote(noteId) {
     if(!confirmDel) return;
     notes.splice(noteId, 1);
     localStorage.setItem("notes", JSON.stringify(notes));
+    //deleteNotesFromServer(noteId);
     showNotes();
 }
 function updateNote(noteId, title, filterDesc) {
@@ -114,7 +117,7 @@ addBtn.addEventListener("click", e => {
 async function fetchNotesFromServer() {
     try {
         // Senden einer GET-Anfrage an den Server
-        const response = await fetch('http://10.10.3.7:8080/api/notizen');
+        const response = await fetch('http://192.168.1.192:8080/api/notizen');
 
         // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200)
         if (response.ok) {
@@ -147,6 +150,43 @@ async function fetchNotesFromServer() {
     } catch (error) {
         console.error('Fehler beim Abrufen der Notizen:', error);
     }
+}
+
+
+async function deleteNotesFromServer(id){
+    // URL der Ressource, die gelöscht werden soll
+    /*const url = 'http://10.10.3.7:8080/api/notiz/' + id;
+
+    // Senden der DELETE-Anfrage
+    axios.delete(url)
+        .then(response => {
+            // Erfolgreiche Antwort erhalten
+            console.log('Ressource erfolgreich gelöscht:', response);
+        })
+        .catch(error => {
+            // Fehler beim Senden der Anfrage oder Verarbeiten der Antwort
+            console.error('Fehler beim Löschen der Ressource:', error);
+        });
+     */
+
+    try{
+        const response = await fetch('http://10.10.3.7:8080/api/notiz/' + id, {
+            method: 'DELETE'
+        });
+
+        // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200)
+        if (response.ok) {
+            console.log('Ressource erfolgreich gelöscht:', response)
+        } else {
+            // Fehlerbehandlung, wenn die Anfrage fehlschlägt
+            console.error('Fehler beim Abrufen der Notizen. Statuscode: ' + response.status);
+        }
+
+    } catch (error) {
+        console.error('Fehler beim Löschen der Notizen:', error);
+    }
+
+
 }
 
 
