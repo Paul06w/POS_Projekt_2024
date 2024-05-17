@@ -73,6 +73,7 @@ function deleteNote(noteId) {
     let confirmDel = confirm("Are you sure you want to delete this note?");
     if(!confirmDel) return;
     notes.splice(noteId, 1);
+    deleteNotesFromServer(noteId)
     localStorage.setItem("notes", JSON.stringify(notes));
     showNotes();
 }
@@ -149,4 +150,40 @@ async function fetchNotesFromServer() {
     }
 }
 
+
+async function deleteNotesFromServer(id){
+    // URL der Ressource, die gelöscht werden soll
+    /*const url = 'http://10.10.3.7:8080/api/notiz/' + id;
+
+    // Senden der DELETE-Anfrage
+    axios.delete(url)
+        .then(response => {
+            // Erfolgreiche Antwort erhalten
+            console.log('Ressource erfolgreich gelöscht:', response);
+        })
+        .catch(error => {
+            // Fehler beim Senden der Anfrage oder Verarbeiten der Antwort
+            console.error('Fehler beim Löschen der Ressource:', error);
+        });
+     */
+
+    try{
+        const response = await fetch('http://10.10.3.7:8080/api/notiz/' + id, {
+            method: 'DELETE'
+        });
+
+        // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200)
+        if (response.ok) {
+            console.log('Ressource erfolgreich gelöscht:', response)
+        } else {
+            // Fehlerbehandlung, wenn die Anfrage fehlschlägt
+            console.error('Fehler beim Abrufen der Notizen. Statuscode: ' + response.status);
+        }
+
+    } catch (error) {
+        console.error('Fehler beim Löschen der Notizen:', error);
+    }
+
+
+}
 
