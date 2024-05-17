@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("240308_Notiz_App_Client")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9442ca944c7676c92750a2a7cf843fd980d9fd3f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b06d065610b2fb572531e0eb74836fd3f65df42f")]
 [assembly: System.Reflection.AssemblyProductAttribute("240308_Notiz_App_Client")]
 [assembly: System.Reflection.AssemblyTitleAttribute("240308_Notiz_App_Client")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
