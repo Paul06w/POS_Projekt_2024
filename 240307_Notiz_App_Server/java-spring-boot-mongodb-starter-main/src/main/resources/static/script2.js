@@ -70,10 +70,13 @@ function showMenu(elem) {
     });
 }
 function deleteNote(noteId) {
+    //console.log(noteId)
     let confirmDel = confirm("Are you sure you want to delete this note?");
     if(!confirmDel) return;
+    const noteIdMongo = notes[noteId].id
+    //console.log(noteIdMongo)
     notes.splice(noteId, 1);
-    deleteNotesFromServer(noteId)
+    deleteNotesFromServer(noteIdMongo)
     localStorage.setItem("notes", JSON.stringify(notes));
     showNotes();
 }
@@ -130,12 +133,14 @@ async function fetchNotesFromServer() {
                 //notesContainer.appendChild(noteElement);
                 let title = note.title;
                 let description = note.text.replace(/;/g, "\n");
+                let check = note.check;
+                let id = note.id;
                 let date = note.title;
                 let currentDate = new Date(),
                     month = months[currentDate.getMonth()],
                     day = currentDate.getDate(),
                     year = currentDate.getFullYear();
-                let noteInfo = {title, description, date: `${month} ${day}, ${year}`}
+                let noteInfo = {id, check, title, description, date: `${month} ${day}, ${year}`}
                 notes.push(noteInfo);
                 localStorage.setItem("notes", JSON.stringify(notes));
 
