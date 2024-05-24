@@ -40,7 +40,7 @@ function showNotes() {
         let filterDesc = note.description.replaceAll("\n", '<br/>');
         let liTag = `<li class="note">
                         <div class="details">
-                            <input type="checkbox" id="checkbox-${id}" class="note-checkbox" ${note.checked ? 'checked' : ''}>
+                            <input type="checkbox" id="checkbox-${id}" class="note-checkbox" ${note.check ? 'checked' : ''}>
                             <!-- <label for="checkbox-${id}" class="checkbox-label">${note.title}</label>-->
                             <!--<p>${note.title}</p>-->
                             <span>${filterDesc}</span>
@@ -58,6 +58,32 @@ function showNotes() {
                         </div>
                     </li>`;
         addBox.insertAdjacentHTML("afterend", liTag);
+
+        let checkboxId = `checkbox-${id}`;
+        let checkbox = document.getElementById(checkboxId);
+
+        // Event-Listener hinzufügen, um auf Änderungen des Kontrollkästchens zu reagieren
+        checkbox.addEventListener('change', function () {
+            // Überprüfen, ob das Kontrollkästchen jetzt angekreuzt ist
+            if (this.checked) {
+                // Wenn das Kontrollkästchen angekreuzt ist, setze die Variable auf einen bestimmten Wert
+                note.check = "true"; // Hier kannst du einen beliebigen Wert setzen
+            } else {
+                // Wenn das Kontrollkästchen nicht angekreuzt ist, setze die Variable auf einen anderen Wert
+                note.check = "false"; // Hier kannst du einen anderen Wert setzen
+            }
+
+            // Jetzt kannst du die Variable verwenden oder mit dem neuen Wert arbeiten
+            console.log('isChecked:', note.check);
+
+            let json = `{
+                "id": "${note.id}",
+                "title": "${note.title}",
+                "text": "${note.description.replace(/\n/g, ";")}",
+                "check": "${note.check}"
+            }`;
+            putNotesOnServer(json);
+        });
     });
 }
 showNotes();
@@ -92,23 +118,46 @@ function updateNote(noteId, title, filterDesc) {
 }
 addBtn.addEventListener("click", e => {
     e.preventDefault();
-    let title = titleTag.value.trim(),
-        description = descTag.value.trim();
+    /*let title = titleTag.value.trim(),
+        description = descTag.value.trim();*/
+    let title = getFormattedTimestamp(),
+        description = descTag.value.trim().replace(/\n/g, ";");
     if(title || description) {
         let currentDate = new Date(),
             month = months[currentDate.getMonth()],
             day = currentDate.getDate(),
             year = currentDate.getFullYear();
-        let noteInfo = {title, description, date: `${month} ${day}, ${year}`}
+        let noteInfo = {title, description, date: `${month} ${day}, ${year}`};
         if(!isUpdate) {
             notes.push(noteInfo);
+            let json = `{
+                "title": "${title}",
+                "text": "${description}",
+                "check": false
+            }`;
+            postNotesOnServer(json);
         } else {
             isUpdate = false;
+            const noteIdMongo = notes[updateId].id;
+            const noteCheckMongo = notes[updateId].check;
+            const noteTitle = notes[updateId].title;
             notes[updateId] = noteInfo;
+            let json = `{
+                "id": "${noteIdMongo}",
+                "title": "${noteTitle}",
+                "text": "${description}",
+                "check": "${noteCheckMongo}"
+            }`;
+            putNotesOnServer(json);
         }
+
+
+
+
         localStorage.setItem("notes", JSON.stringify(notes));
         showNotes();
         closeIcon.click();
+        location.reload();
     }
 });
 
@@ -157,20 +206,6 @@ async function fetchNotesFromServer() {
 
 
 async function deleteNotesFromServer(id){
-    // URL der Ressource, die gelöscht werden soll
-    /*const url = 'http://10.10.3.7:8080/api/notiz/' + id;
-
-    // Senden der DELETE-Anfrage
-    axios.delete(url)
-        .then(response => {
-            // Erfolgreiche Antwort erhalten
-            console.log('Ressource erfolgreich gelöscht:', response);
-        })
-        .catch(error => {
-            // Fehler beim Senden der Anfrage oder Verarbeiten der Antwort
-            console.error('Fehler beim Löschen der Ressource:', error);
-        });
-     */
 
     try{
         const response = await fetch('http://10.10.3.7:8080/api/notiz/' + id, {
@@ -188,7 +223,70 @@ async function deleteNotesFromServer(id){
     } catch (error) {
         console.error('Fehler beim Löschen der Notizen:', error);
     }
-
-
 }
+
+
+async function postNotesOnServer(json){
+
+    try{
+        const response = await fetch('http://10.10.3.7:8080/api/notiz', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: json
+        });
+
+        // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200)
+        if (response.ok) {
+            console.log('Ressource erfolgreich erstellt:', response)
+        } else {
+            // Fehlerbehandlung, wenn die Anfrage fehlschlägt
+            console.error('Fehler beim Abrufen der Notizen. Statuscode: ' + response.status);
+        }
+
+    } catch (error) {
+        console.error('Fehler beim Löschen der Notizen:', error);
+    }
+}
+
+
+async function putNotesOnServer(json){
+
+    try{
+        const response = await fetch('http://10.10.3.7:8080/api/notiz', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: json
+        });
+
+        // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200)
+        if (response.ok) {
+            console.log('Ressource erfolgreich geändert:', response)
+        } else {
+            // Fehlerbehandlung, wenn die Anfrage fehlschlägt
+            console.error('Fehler beim Abrufen der Notizen. Statuscode: ' + response.status);
+        }
+
+    } catch (error) {
+        console.error('Fehler beim Löschen der Notizen:', error);
+    }
+}
+
+function getFormattedTimestamp() {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Monate sind nullbasiert
+    const year = now.getFullYear();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    return `${day}.${month}.${year}, ${hours}:${minutes}:${seconds}`;
+}
+
+
+
 
