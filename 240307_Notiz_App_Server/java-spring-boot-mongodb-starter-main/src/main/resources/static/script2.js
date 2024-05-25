@@ -167,7 +167,8 @@ addBtn.addEventListener("click", e => {
 async function fetchNotesFromServer() {
     try {
         // Senden einer GET-Anfrage an den Server
-        const response = await fetch('http://10.10.3.7:8080/api/notizen');
+        //const response = await fetch('http://10.10.3.7:8080/api/notizen');
+        const response = await fetch('/api/notizen');
 
         // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200)
         if (response.ok) {
@@ -208,7 +209,7 @@ async function fetchNotesFromServer() {
 async function deleteNotesFromServer(id){
 
     try{
-        const response = await fetch('http://10.10.3.7:8080/api/notiz/' + id, {
+        const response = await fetch('/api/notiz/' + id, {
             method: 'DELETE'
         });
 
@@ -229,7 +230,7 @@ async function deleteNotesFromServer(id){
 async function postNotesOnServer(json){
 
     try{
-        const response = await fetch('http://10.10.3.7:8080/api/notiz', {
+        const response = await fetch('/api/notiz', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -254,7 +255,7 @@ async function postNotesOnServer(json){
 async function putNotesOnServer(json){
 
     try{
-        const response = await fetch('http://10.10.3.7:8080/api/notiz', {
+        const response = await fetch('/api/notiz', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
