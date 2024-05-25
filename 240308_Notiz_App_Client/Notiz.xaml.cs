@@ -95,7 +95,7 @@ namespace _240308_Notiz_App_Client
             try
             {
                 // URL des Spring Boot-Endpunkts
-                string url = "http://10.10.3.7:8080/api/notiz";
+                string url = $"http://{MainWindow.serverAddress}:8080/api/notiz";
 
                 // Daten, die Sie im Request-Body senden möchten
                 //string jsonData = "{\"key1\":\"value1\",\"key2\":\"value2\"}";

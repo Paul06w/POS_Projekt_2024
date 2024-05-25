@@ -21,6 +21,7 @@ namespace _240308_Notiz_App_Client
     public partial class MainWindow : Window
     {
         List<Notiz> notizen = new List<Notiz>();
+        public static string serverAddress = "192.168.1.192";
 
         public MainWindow()
         {
@@ -35,9 +36,7 @@ namespace _240308_Notiz_App_Client
 
         public async Task LoadData()
         {
-            string url = "http://10.10.3.7:8080/api/notizen";
-
-            notizen = await GetNotizenAsync(url);
+            notizen = await GetNotizenAsync();
             foreach (Notiz n in notizen)
             {
                 n.Replace();
@@ -95,9 +94,10 @@ namespace _240308_Notiz_App_Client
 
         }
 
-        public async Task<List<Notiz>> GetNotizenAsync(string url)
+        public async Task<List<Notiz>> GetNotizenAsync()
         {
             List<Notiz> notizen = new List<Notiz>();
+            string url = $"http://{serverAddress}:8080/api/notizen";
 
             using (var client = new HttpClient())
             {
@@ -144,7 +144,7 @@ namespace _240308_Notiz_App_Client
             AddButton(DateTime.Now.ToString(timestamp));
             //notizen.Add(n);
             notizen.Clear();
-            notizen = await GetNotizenAsync("http://10.10.3.7:8080/api/notizen");
+            notizen = await GetNotizenAsync();
 
         }
 
@@ -256,7 +256,7 @@ namespace _240308_Notiz_App_Client
             try
             {
                 // URL des Spring Boot-Endpunkts
-                string url = "http://10.10.3.7:8080/api/notiz";
+                string url = $"http://{serverAddress}:8080/api/notiz";
 
                 // Daten, die Sie im Request-Body senden möchten
                 //string jsonData = "{\"key1\":\"value1\",\"key2\":\"value2\"}";
@@ -302,7 +302,7 @@ namespace _240308_Notiz_App_Client
             try
             {
                 // URL des Spring Boot-Endpunkts
-                string url = "http://10.10.3.7:8080/api/notiz";
+                string url = $"http://{serverAddress}:8080/api/notiz";
 
                 // Daten, die Sie im Request-Body senden möchten
                 //string jsonData = "{\"key1\":\"value1\",\"key2\":\"value2\"}";
@@ -411,7 +411,7 @@ namespace _240308_Notiz_App_Client
             try
             {
                 // URL des Spring Boot-Endpunkts
-                string url = "http://10.10.3.7:8080/api/notiz/" + id; // Beispiel-URL
+                string url = $"http://{serverAddress}:8080/api/notiz/" + id; // Beispiel-URL
 
                 // Erstellen des HttpClient-Objekts
                 using (HttpClient client = new HttpClient())
