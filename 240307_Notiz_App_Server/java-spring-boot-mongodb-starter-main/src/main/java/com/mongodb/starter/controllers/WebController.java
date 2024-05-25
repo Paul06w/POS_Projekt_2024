@@ -8,12 +8,12 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 
 @Controller
-@RequestMapping("app")
+//@RequestMapping("app")
 public class WebController {
 
     @GetMapping("/")
     public String index2() {
-        return "index2";
+        return "index";
     }
 
 }

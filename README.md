@@ -45,10 +45,12 @@ repository/
 ├── package.json
 ├── README.md
 
+```mermaid
 graph TD;
     A[Benutzer] --> B[Frontend]
     B --> C[Backend]
     C --> D[Database]
+```
 
 ```mermaid
 sequenceDiagram
