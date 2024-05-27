@@ -94,32 +94,18 @@ namespace _240308_Notiz_App_Client
         {
             try
             {
-                // URL des Spring Boot-Endpunkts
-                string url = $"http://{MainWindow.serverAddress}:8080/api/notiz";
+                string url = $"http://{MainWindow.serverAddress}:8080/api/notiz";       //URL des Spring Boot-Endpunkts
 
-                // Daten, die Sie im Request-Body senden möchten
-                //string jsonData = "{\"key1\":\"value1\",\"key2\":\"value2\"}";
-
-                // Erstellen des HttpClient-Objekts
                 using (HttpClient client = new HttpClient())
                 {
-                    // Konfigurieren des Request-Headers (falls erforderlich)
-                    // client.DefaultRequestHeaders.Add("HeaderName", "HeaderValue");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, url);       //Erstellen des HttpRequestMessage-Objekts
+                    request.Content = new StringContent(json, Encoding.UTF8, "application/json");   //Hinzufügen der Daten zum Request-Body
 
-                    // Erstellen des HttpRequestMessage-Objekts
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, url);
+                    HttpResponseMessage response = await client.SendAsync(request);                 //Senden der Anfrage und Warten auf die Antwort
 
-                    // Hinzufügen der Daten zum Request-Body
-                    request.Content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                    // Senden der Anfrage und Warten auf die Antwort
-                    HttpResponseMessage response = await client.SendAsync(request);
-
-                    // Überprüfen des Antwortstatus
                     if (response.IsSuccessStatusCode)
                     {
                         Console.WriteLine("PUT-Anfrage erfolgreich gesendet.");
-                        // Wenn Sie auf die Antwort zugreifen möchten:
                         // string responseBody = await response.Content.ReadAsStringAsync();
                     }
                     else
