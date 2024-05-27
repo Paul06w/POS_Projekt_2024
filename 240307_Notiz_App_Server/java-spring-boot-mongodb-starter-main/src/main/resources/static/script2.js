@@ -5,9 +5,6 @@ const addBox = document.querySelector(".add-box"),
     titleTag = popupBox.querySelector("input"),
     descTag = popupBox.querySelector("textarea"),
     addBtn = popupBox.querySelector("button");
-const months = ["January", "February", "March", "April", "May", "June", "July",
-    "August", "September", "October", "November", "December"];
-
 
 //showNotes();
 //localStorage.setItem("notes", JSON.stringify(notes));
@@ -62,18 +59,12 @@ function showNotes() {
         let checkboxId = `checkbox-${id}`;
         let checkbox = document.getElementById(checkboxId);
 
-        // Event-Listener hinzufügen, um auf Änderungen des Kontrollkästchens zu reagieren
         checkbox.addEventListener('change', function () {
-            // Überprüfen, ob das Kontrollkästchen jetzt angekreuzt ist
             if (this.checked) {
-                // Wenn das Kontrollkästchen angekreuzt ist, setze die Variable auf einen bestimmten Wert
-                note.check = "true"; // Hier kannst du einen beliebigen Wert setzen
+                note.check = "true";
             } else {
-                // Wenn das Kontrollkästchen nicht angekreuzt ist, setze die Variable auf einen anderen Wert
-                note.check = "false"; // Hier kannst du einen anderen Wert setzen
+                note.check = "false";
             }
-
-            // Jetzt kannst du die Variable verwenden oder mit dem neuen Wert arbeiten
             console.log('isChecked:', note.check);
 
             let json = `{
@@ -123,13 +114,7 @@ addBtn.addEventListener("click", e => {
     let title = getFormattedTimestamp(),
         description = descTag.value.trim().replace(/\n/g, ";");
     if(title || description) {
-        let currentDate = new Date(),
-            month = months[currentDate.getMonth()],
-            day = currentDate.getDate(),
-            year = currentDate.getFullYear();
-        let noteInfo = {title, description, date: `${month} ${day}, ${year}`};
         if(!isUpdate) {
-            notes.push(noteInfo);
             let json = `{
                 "title": "${title}",
                 "text": "${description}",
@@ -151,9 +136,6 @@ addBtn.addEventListener("click", e => {
             putNotesOnServer(json);
         }
 
-
-
-
         localStorage.setItem("notes", JSON.stringify(notes));
         showNotes();
         closeIcon.click();
@@ -166,21 +148,13 @@ addBtn.addEventListener("click", e => {
 
 async function fetchNotesFromServer() {
     try {
-        // Senden einer GET-Anfrage an den Server
         //const response = await fetch('http://10.10.3.7:8080/api/notizen');
         const response = await fetch('/api/notizen');
 
-        // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200)
-        if (response.ok) {
-            // Konvertieren der Antwort in JSON
-            const notesData = await response.json();
 
-            // Anzeigen der Notizen im Notiz-Container
+        if (response.ok) {          //Anfrage erfolgreich (Statuscode 200)
+            const notesData = await response.json();
             notesData.forEach(note => {
-                //const noteElement = document.createElement("p");
-                //addSection(note.id, note.title, note.text, note.check)
-                //noteElement.textContent = note.title;
-                //notesContainer.appendChild(noteElement);
                 let title = note.title;
                 let description = note.text.replace(/;/g, "\n");
                 let check = note.check;
@@ -197,7 +171,6 @@ async function fetchNotesFromServer() {
             });
 
         } else {
-            // Fehlerbehandlung, wenn die Anfrage fehlschlägt
             console.error('Fehler beim Abrufen der Notizen. Statuscode: ' + response.status);
         }
     } catch (error) {
@@ -213,11 +186,9 @@ async function deleteNotesFromServer(id){
             method: 'DELETE'
         });
 
-        // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200)
         if (response.ok) {
             console.log('Ressource erfolgreich gelöscht:', response)
         } else {
-            // Fehlerbehandlung, wenn die Anfrage fehlschlägt
             console.error('Fehler beim Abrufen der Notizen. Statuscode: ' + response.status);
         }
 
@@ -238,11 +209,9 @@ async function postNotesOnServer(json){
             body: json
         });
 
-        // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200)
         if (response.ok) {
             console.log('Ressource erfolgreich erstellt:', response)
         } else {
-            // Fehlerbehandlung, wenn die Anfrage fehlschlägt
             console.error('Fehler beim Abrufen der Notizen. Statuscode: ' + response.status);
         }
 
@@ -263,16 +232,14 @@ async function putNotesOnServer(json){
             body: json
         });
 
-        // Überprüfen, ob die Anfrage erfolgreich war (Statuscode 200)
         if (response.ok) {
             console.log('Ressource erfolgreich geändert:', response)
         } else {
-            // Fehlerbehandlung, wenn die Anfrage fehlschlägt
             console.error('Fehler beim Abrufen der Notizen. Statuscode: ' + response.status);
         }
 
     } catch (error) {
-        console.error('Fehler beim Löschen der Notizen:', error);
+        console.error('Fehler beim Ändern der Notizen:', error);
     }
 }
 
