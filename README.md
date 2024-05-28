@@ -19,45 +19,63 @@ graph TD;
 ```
 
 
+
 ## Beschreibung der Software
 Die Notiz-App ermöglicht es dem Benutzer sich entweder über den Browser oder einer Desktop-Anwendung mit dem Server zu verbinden und Notizen zu erstellen. Diese können anschließend inhaltlich auch wieder verändert werden. Zusätzlich können Notizen auch als erledigt makiert oder auch gelöscht werden. Jede dieser genannten Funktionen sendet ein Update an den Server und folglich auch an die Datenbank, in der die Daten entweder erstellt, geändert oder gelöscht werden.
 
 
 
 ## Funktionen der webbasierten Notiz-App
+Die IP-Adresse des Servers muss nicht manuell eingegeben werden, sondern wird automatisch basierend auf die IP-Adresse des Geräts zugewiesen. 
 
 ### Erstellen einer Notiz
-![Erstellen einer Notiz](./BilderDoku/HTML_Add.jpg)<br>
+![Erstellen einer Notiz](./BilderDoku/HTML_Add.jpg)
 ![Erstellen einer Notiz](./BilderDoku/HTML_Add2.jpg)<br>
-Beim Drücken auf das Element im ersten Bild wird man in das zweite Fenster geleitet, wo man den Inhalt eingeben kann.
+Beim Drücken auf das Element im ersten Bild wird man in das zweite Fenster geleitet, wo man den Inhalt eingeben kann. <br>
+Ist man mit dem Inhalt zufrieden, so betätigt man "Add Note". Die Notiz wird nun in der Datenbank angelegt.
 
 ### Anzeigen der Notizen
 ![Erstellen einer Notiz](./BilderDoku/HTML_Anzeigen.jpg)<br>
+Nach dem Anlegen einer Notiz oder auch dem Laden von der Datenbank werden die Notizen wie im Bild zu sehen im Browser angezeigt. <br>
+Unten links kann man das Datum sehen, an welchem die Notiz angelegt wurde. <br>
+In der Mitte befindet sich der Inhalt der Notiz und oben wird die Checkbox für das Erledigen der Notiz angezeigt. <br>
+Außerdem kann man rechts unten noch die drei Punkte sehen, welche, wie später noch beschrieben, die Möglichkeiten für das Ändern und Löschen der Notiz beinhalten.
 
 ### Erledigen einer Notiz
 ![Erstellen einer Notiz](./BilderDoku/HTML_Erledigt.jpg)<br>
+Die zuvor erwähnte Checkbox dient nun zum Makieren der erledigten Notizen. Durch einfaches anklicken wird die Notiz als Erledigt makiert und diese Info auch wieder in der Datenbank gespeichert. Bei erneutem Laden der Webseite bleibt die Notiz erledigt. 
 
 ### Ändern einer Notiz
-![Erstellen einer Notiz](./BilderDoku/HTML_Edit_Delete.jpg)<br>
+![Erstellen einer Notiz](./BilderDoku/HTML_Edit_Delete.jpg)
 ![Erstellen einer Notiz](./BilderDoku/HTML_Edit.jpg)<br>
+Über die drei Punkte kann man nun zwischen dem Ändern oder dem Löschen entscheiden. <br>
+Entscheidet man sich für das Ändern der Notiz, so wird man, wie beim Erstellen einer Notiz in das bereits bekannte Fenster geleitet, wobei man jetzt den aktuellen Inhalt der Notiz im Inhaltsfeld sehen kann. Nun kann man die gewünschte Änderung durchführen und den Button "Update Note" betätigen, was zum Update der Notiz in der Datenbank und der Webapp führt.
+
 
 ### Löschen einer Notiz
-![Erstellen einer Notiz](./BilderDoku/HTML_Edit_Delete.jpg)<br>
+![Erstellen einer Notiz](./BilderDoku/HTML_Edit_Delete.jpg)
 ![Erstellen einer Notiz](./BilderDoku/HTML_Delete.jpg)<br>
+Entscheidet man sich jedoch für das Löschen der Notiz so wird durch ein weiteres Fenster nochmals sichergsetellt, dass das Löschen wirklich beabsichtigt war. <br>
+Sollte man dies bestätigen, so wird die Notiz in der Webapp und der Datenbank gelöscht. 
 
 
 
+## Funktionen der WPF-Anwendung
 
 
+### Erstellen einer Notiz
 
 
+### Anzeigen der Notizen
 
 
+### Erledigen einer Notiz
 
 
+### Ändern einer Notiz
 
 
-
+### Löschen einer Notiz
 
 
 

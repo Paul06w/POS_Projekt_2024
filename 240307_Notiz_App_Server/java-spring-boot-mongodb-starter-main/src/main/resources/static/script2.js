@@ -6,6 +6,9 @@ const addBox = document.querySelector(".add-box"),
     descTag = popupBox.querySelector("textarea"),
     addBtn = popupBox.querySelector("button");
 
+const months = ["January", "February", "March", "April", "May", "June", "July",
+    "August", "September", "October", "November", "December"];
+
 //showNotes();
 //localStorage.setItem("notes", JSON.stringify(notes));
 
