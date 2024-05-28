@@ -43,4 +43,4 @@ C:\_Paul_Wasle\4_Klasse\7_Programming and Softwareengeneering\Projekt_Notiz_App\
 C:\_Paul_Wasle\4_Klasse\7_Programming and Softwareengeneering\Projekt_Notiz_App\POS_Projekt_2024\240308_Notiz_App_Client\obj\Debug\net8.0-windows\ref\240308_Notiz_App_Client.dll
 C:\_Paul_Wasle\4_Klasse\7_Programming and Softwareengeneering\Projekt_Notiz_App\POS_Projekt_2024\240308_Notiz_App_Client\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
 C:\_Paul_Wasle\4_Klasse\7_Programming and Softwareengeneering\Projekt_Notiz_App\POS_Projekt_2024\240308_Notiz_App_Client\obj\Debug\net8.0-windows\240308_Notiz_App_Client.csproj.AssemblyReference.cache
-C:\_Paul_Wasle\4_Klasse\7_Programming and Softwareengeneering\Projekt_Notiz_App\POS_Projekt_2024\240308_Notiz_App_Client\obj\Debug\net8.0-windows\240308_Notiz_App_Client.csproj.CopyComplete
+C:\_Paul_Wasle\4_Klasse\7_Programming and Softwareengeneering\Projekt_Notiz_App\POS_Projekt_2024\240308_Notiz_App_Client\obj\Debug\net8.0-windows\240308_N.6F69CAB7.Up2Date

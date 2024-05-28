@@ -1,0 +1,102 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9EE25975-9339-4880-AC86-AF3D1A9C61ED}|240308_Notiz_App_Client.csproj|c:\\_paul_wasle\\4_klasse\\7_programming and softwareengeneering\\projekt_notiz_app\\pos_projekt_2024\\240308_notiz_app_client\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9EE25975-9339-4880-AC86-AF3D1A9C61ED}|240308_Notiz_App_Client.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EE25975-9339-4880-AC86-AF3D1A9C61ED}|240308_Notiz_App_Client.csproj|c:\\_paul_wasle\\4_klasse\\7_programming and softwareengeneering\\projekt_notiz_app\\pos_projekt_2024\\240308_notiz_app_client\\notiz.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9EE25975-9339-4880-AC86-AF3D1A9C61ED}|240308_Notiz_App_Client.csproj|solutionrelative:notiz.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EE25975-9339-4880-AC86-AF3D1A9C61ED}|240308_Notiz_App_Client.csproj|c:\\_paul_wasle\\4_klasse\\7_programming and softwareengeneering\\projekt_notiz_app\\pos_projekt_2024\\240308_notiz_app_client\\notiz.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9EE25975-9339-4880-AC86-AF3D1A9C61ED}|240308_Notiz_App_Client.csproj|solutionrelative:notiz.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EE25975-9339-4880-AC86-AF3D1A9C61ED}|240308_Notiz_App_Client.csproj|c:\\_paul_wasle\\4_klasse\\7_programming and softwareengeneering\\projekt_notiz_app\\pos_projekt_2024\\240308_notiz_app_client\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9EE25975-9339-4880-AC86-AF3D1A9C61ED}|240308_Notiz_App_Client.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-03-08T09:18:31.05Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Notiz.xaml.cs",
+              "DocumentMoniker": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\Notiz.xaml.cs",
+              "RelativeDocumentMoniker": "Notiz.xaml.cs",
+              "ToolTip": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\Notiz.xaml.cs",
+              "RelativeToolTip": "Notiz.xaml.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABcAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-08T09:23:18.284Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Notiz.xaml",
+              "DocumentMoniker": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\Notiz.xaml",
+              "RelativeDocumentMoniker": "Notiz.xaml",
+              "ToolTip": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\Notiz.xaml",
+              "RelativeToolTip": "Notiz.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-03-08T09:23:10.66Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAYwGcAAABVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-08T09:18:31.13Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
