@@ -22,7 +22,7 @@ namespace _240308_Notiz_App_Client
     public partial class MainWindow : Window
     {
         List<Notiz> notizen = new List<Notiz>();
-        public static string serverAddress = "10.10.3.7";
+        public static string serverAddress = "192.168.9.66";
 
         public MainWindow()
         {
@@ -127,7 +127,7 @@ namespace _240308_Notiz_App_Client
             string timestamp = DateTime.Now.ToString("dd.MM.yyyy, HH:mm:ss");
 
             Notiz n = new Notiz(timestamp, "", false);
-            n.Show();
+            //n.Show();
 
             string title = DateTime.Now.ToString(timestamp);
             string text = "";

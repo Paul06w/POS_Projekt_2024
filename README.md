@@ -61,21 +61,33 @@ Sollte man dies bestätigen, so wird die Notiz in der Webapp und der Datenbank g
 
 
 ## Funktionen der WPF-Anwendung
+Die IP-Adresse des WPF-Clients muss im Gegensatz zum Server manuell eingegeben werden. Im Code muss man hierbei, wie im folgenden Code-Ausschnitt gezeigt, die IP-Adresse auf die des Servers setzen. Die Server-IP wird bei Starten des Servers in der Konsole ausgegeben.
 
+```csharp
+public static string serverAddress = "IP-Adresse des Servers";
+```
 
 ### Erstellen einer Notiz
+![Erstellen einer Notiz](./BilderDoku/WPF_Add.jpg) <br>
+Das Drücken des Buttons auf dem ersten Bild führt zum Erstellen einer neuen Notiz, welche dann wie im nächsten Punkt dargestellt wird. 
 
+Beim Drücken auf das Element im ersten Bild wird man in das zweite Fenster geleitet, wo man den Inhalt eingeben kann. <br>
+Ist man mit dem Inhalt zufrieden, so betätigt man "Add Note". Die Notiz wird nun in der Datenbank angelegt.
 
 ### Anzeigen der Notizen
+![Erstellen einer Notiz](./BilderDoku/WPF_Anzeigen.jpg)<br>
 
 
 ### Erledigen einer Notiz
+![Erstellen einer Notiz](./BilderDoku/WPF_Erledigen.jpg)<br>
 
 
 ### Ändern einer Notiz
+![Erstellen einer Notiz](./BilderDoku/WPF_Edit.jpg)<br>
 
 
 ### Löschen einer Notiz
+![Erstellen einer Notiz](./BilderDoku/WPF_Delete.jpg)<br>
 
 
 
@@ -92,7 +104,20 @@ Sollte man dies bestätigen, so wird die Notiz in der Webapp und der Datenbank g
 
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
+# DOKU noch nicht vollständig und fertig
+
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 
@@ -147,17 +172,6 @@ Beschreibe, wie man das Projekt benutzt.
 npm start
 ```
 
-repository/
-├── node_modules/
-├── src/
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── app.js
-├── test/
-├── package.json
-├── README.md
-
 ```mermaid
 graph TD;
     A[Benutzer] --> B[Frontend]
@@ -193,19 +207,6 @@ sequenceDiagram
 - **Lizenz**: Informationen zur Lizenzierung des Projekts.
 
 Mermaid-Grafiken helfen dabei, die Architektur und den Datenfluss verständlicher darzustellen. Diese Vorlage kann nach Bedarf angepasst und erweitert werden.
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
