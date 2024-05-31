@@ -22,7 +22,7 @@ namespace _240308_Notiz_App_Client
     public partial class MainWindow : Window
     {
         List<Notiz> notizen = new List<Notiz>();
-        public static string serverAddress = "192.168.9.66";
+        public static string serverAddress = "192.168.155.66";
 
         public MainWindow()
         {

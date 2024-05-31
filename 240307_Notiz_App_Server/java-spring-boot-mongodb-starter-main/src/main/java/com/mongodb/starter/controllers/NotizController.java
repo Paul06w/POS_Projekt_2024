@@ -84,12 +84,6 @@ public class NotizController {
         return notizService.update(notizEntities);
     }
 
-    /*@GetMapping("cars/averageAge")
-    public Double averageAge() {
-        return carService.getAverageAge();
-    }
-     */
-
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public final Exception handleAllExceptions(RuntimeException e) {

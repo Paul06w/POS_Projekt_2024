@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9EE25975-9339-4880-AC86-AF3D1A9C61ED}|240308_Notiz_App_Client.csproj|c:\\_paul_wasle\\4_klasse\\7_programming and softwareengeneering\\projekt_notiz_app\\pos_projekt_2024\\240308_notiz_app_client\\notiz.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9EE25975-9339-4880-AC86-AF3D1A9C61ED}|240308_Notiz_App_Client.csproj|solutionrelative:notiz.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9EE25975-9339-4880-AC86-AF3D1A9C61ED}|240308_Notiz_App_Client.csproj|c:\\_paul_wasle\\4_klasse\\7_programming and softwareengeneering\\projekt_notiz_app\\pos_projekt_2024\\240308_notiz_app_client\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9EE25975-9339-4880-AC86-AF3D1A9C61ED}|240308_Notiz_App_Client.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{9EE25975-9339-4880-AC86-AF3D1A9C61ED}|240308_Notiz_App_Client.csproj|c:\\_paul_wasle\\4_klasse\\7_programming and softwareengeneering\\projekt_notiz_app\\pos_projekt_2024\\240308_notiz_app_client\\notiz.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{9EE25975-9339-4880-AC86-AF3D1A9C61ED}|240308_Notiz_App_Client.csproj|solutionrelative:notiz.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9EE25975-9339-4880-AC86-AF3D1A9C61ED}|240308_Notiz_App_Client.csproj|c:\\_paul_wasle\\4_klasse\\7_programming and softwareengeneering\\projekt_notiz_app\\pos_projekt_2024\\240308_notiz_app_client\\notiz.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9EE25975-9339-4880-AC86-AF3D1A9C61ED}|240308_Notiz_App_Client.csproj|solutionrelative:notiz.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,31 +42,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
               "ToolTip": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-03-08T09:18:31.05Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-08T09:18:31.05Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Notiz.xaml.cs",
               "DocumentMoniker": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\Notiz.xaml.cs",
               "RelativeDocumentMoniker": "Notiz.xaml.cs",
               "ToolTip": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\Notiz.xaml.cs",
               "RelativeToolTip": "Notiz.xaml.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAABcAAAAnAAAA",
+              "ViewState": "AQIAAB4AAAAAAAAAAAA7wCUAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-08T09:23:18.284Z"
+              "WhenOpened": "2024-03-08T09:23:18.284Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Notiz.xaml",
               "DocumentMoniker": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\Notiz.xaml",
               "RelativeDocumentMoniker": "Notiz.xaml",
@@ -77,13 +77,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\_Paul_Wasle\\4_Klasse\\7_Programming and Softwareengeneering\\Projekt_Notiz_App\\POS_Projekt_2024\\240308_Notiz_App_Client\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AQIAAGEAAAAAAAAAAAAkwHIAAABkAAAA",
+              "ViewState": "AQIAAFYAAAAAAAAAAAAAAF8AAABEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-08T09:18:31.13Z",
               "EditorCaption": ""

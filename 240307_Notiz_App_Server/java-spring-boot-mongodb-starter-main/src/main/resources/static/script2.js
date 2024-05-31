@@ -117,7 +117,13 @@ addBtn.addEventListener("click", e => {
     let title = getFormattedTimestamp(),
         description = descTag.value.trim().replace(/\n/g, ";");
     if(title || description) {
+        let currentDate = new Date(),
+            month = months[currentDate.getMonth()],
+            day = currentDate.getDate(),
+            year = currentDate.getFullYear();
+        let noteInfo = {title, description, date: `${month} ${day}, ${year}`};
         if(!isUpdate) {
+            notes.push(noteInfo);
             let json = `{
                 "title": "${title}",
                 "text": "${description}",
