@@ -390,7 +390,7 @@ graph TD;
 
 
 ### Zusammenfassung
-tinyWhatsApp stellt eine intuitive Benutzeroberfläche für sämtliche Platformen zur Verfügung. Die REST-API des Spring-Boot Servers ermöglicht die Echtzeitkommunikation zwischen den Clients und der Datenbank.
+
 
 ### Hintergründe
 
