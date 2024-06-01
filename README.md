@@ -21,7 +21,7 @@ graph TD;
 
 
 ## Beschreibung der Software
-Die Notiz-App ermöglicht es dem Benutzer sich entweder über den Browser oder einer Desktop-Anwendung mit dem Server zu verbinden und Notizen zu erstellen. Diese können anschließend inhaltlich auch wieder verändert werden. Zusätzlich können Notizen auch als erledigt makiert oder auch gelöscht werden. Jede dieser genannten Funktionen sendet ein Update an den Server und folglich auch an die Datenbank, in der die Daten entweder erstellt, geändert oder gelöscht werden.
+Die Notiz-App ermöglicht es dem Benutzer sich entweder über den Browser oder einer Desktop-Anwendung mit dem Server zu verbinden und Notizen zu erstellen. Diese können anschließend inhaltlich auch wieder verändert werden. Zusätzlich können Notizen auch als erledigt markiert oder auch gelöscht werden. Jede dieser genannten Funktionen sendet ein Update an den Server und folglich auch an die Datenbank, in der die Daten entweder erstellt, geändert oder gelöscht werden.
 
 
 
@@ -43,7 +43,7 @@ Außerdem kann man rechts unten noch die drei Punkte sehen, welche, wie später 
 
 ### Erledigen einer Notiz
 ![Erstellen einer Notiz](./BilderDoku/HTML_Erledigt.jpg)<br>
-Die zuvor erwähnte Checkbox dient nun zum Makieren der erledigten Notizen. Durch einfaches anklicken wird die Notiz als Erledigt makiert und diese Info auch wieder in der Datenbank gespeichert. Bei erneutem Laden der Webseite bleibt die Notiz erledigt. 
+Die zuvor erwähnte Checkbox dient nun zum Markieren der erledigten Notizen. Durch einfaches anklicken wird die Notiz als Erledigt markiert und diese Info auch wieder in der Datenbank gespeichert. Bei erneutem Laden der Webseite bleibt die Notiz erledigt. 
 
 ### Ändern einer Notiz
 ![Erstellen einer Notiz](./BilderDoku/HTML_Edit_Delete.jpg)
@@ -55,7 +55,7 @@ Entscheidet man sich für das Ändern der Notiz, so wird man, wie beim Erstellen
 ### Löschen einer Notiz
 ![Erstellen einer Notiz](./BilderDoku/HTML_Edit_Delete.jpg)
 ![Erstellen einer Notiz](./BilderDoku/HTML_Delete.jpg)<br>
-Entscheidet man sich jedoch für das Löschen der Notiz so wird durch ein weiteres Fenster nochmals sichergsetellt, dass das Löschen wirklich beabsichtigt war. <br>
+Entscheidet man sich jedoch für das Löschen der Notiz so wird durch ein weiteres Fenster nochmals sichergestellt, dass das Löschen wirklich beabsichtigt war. <br>
 Sollte man dies bestätigen, so wird die Notiz in der Webapp und der Datenbank gelöscht. 
 
 
@@ -81,7 +81,7 @@ Drückt man auf die Notiz drauf, so öffnet sich ein weiteres Fenster, in dem ma
 
 ### Erledigen einer Notiz
 ![Erstellen einer Notiz](./BilderDoku/WPF_Erledigen.jpg)<br>
-Die zuvor erwähnte Checkbox dient nun zum Makieren der erledigten Notizen. Durch einfaches anklicken wird die Notiz als Erledigt makiert und diese Info auch wieder in der Datenbank gespeichert.
+Die zuvor erwähnte Checkbox dient nun zum Markieren der erledigten Notizen. Durch einfaches anklicken wird die Notiz als Erledigt markiert und diese Info auch wieder in der Datenbank gespeichert.
 
 ### Ändern einer Notiz
 ![Erstellen einer Notiz](./BilderDoku/WPF_Edit.jpg)<br>
@@ -97,7 +97,7 @@ Durch Klicken auf den Mistkübel wird die Notiz sofort in der App und der Datenb
 Der Spring-Boot-Server basiert auf dem bekannten REST-Prinzip und stellt folgend auch die GET-, POST-, PUT-, und Delete-Endpoints zur Verfügung. Über diese können die Clients mit dem Server und dadurch auch mit der Datenbank kommunizieren. 
 
 ### Endpunkte
-Endpunkte beginnen mit der IPAdresse des Serves und dem Port. Anschließend wird dann der jewielige Endpoint ergänzt.
+Endpunkte beginnen mit der IP-Adresse des Servers und dem Port. Anschließend wird dann der jeweilige Endpoint ergänzt.
 ```sh
 ServerIPAdresse:8080 + Endpoint
 ```
@@ -110,7 +110,7 @@ ServerIPAdresse:8080 + Endpoint
   ```sh
   ServerIPAdresse:8080/
   ```
-  Dieser Pfad muss in den Browser eingegeben werden um das HTML-File zu erhalten.
+  Dieser Pfad muss in den Browser eingegeben werden, um das HTML-File zu erhalten.
 
 </details>
 
@@ -208,7 +208,7 @@ ServerIPAdresse:8080 + Endpoint
 <br>
 
 #### Weitere Endpunkte
-Diese Endpunkte werden von dem Server zusätzlich noch unterstützt, finden in meinem Programm jedoch keine Anwendung. Vollständigkeitshalber werden sie in der Dokumentation aufgezählt, jedoch nicht dettailiert mit dem JSON-Body und dem Return-Wert beschrieben.
+Diese Endpunkte werden von dem Server zusätzlich noch unterstützt, finden in meinem Programm jedoch keine Anwendung. Vollständigkeitshalber werden sie in der Dokumentation aufgezählt, jedoch nicht detailliert mit dem JSON-Body und dem Return-Wert beschrieben.
 
 
 <details>
@@ -337,7 +337,7 @@ graph TD;
         return notizen;
     }
   ```
-  Mit der URL wird über einen HTTP-Client auf den Endpoint zugegriffen und auf die Response-Nachricht gewartet. Danach werden die JSON-Objekte in Notiz-Objekte deserialisiert und in der Liste gespeichert. Anschließend werden die ";" durch "\r\n" ersetzt, da diese nicht in der Datenbank gespeichert werden können, für die Darstellung im Programm jedoch essentiell sind.
+  Mit der URL wird über einen HTTP-Client auf den Endpoint zugegriffen und auf die Response-Nachricht gewartet. Danach werden die JSON-Objekte in Notiz-Objekte deserialisiert und in der Liste gespeichert. Anschließend werden die ";" durch "\r\n" ersetzt, da diese nicht in der Datenbank gespeichert werden können, für die Darstellung im Programm jedoch essentziell sind.
 </details>
 
 <details>
@@ -379,7 +379,7 @@ graph TD;
         }
     }
   ```
-  Mit der URL wird hier über den fetch-Befehl auf den Endpoint zugegriffen und auf die Response-Nachricht gewartet. Dann wird jedes Element in der empfangenen Nachricht durchgegeangen und die Variablen gelesen, um sie dann in den LocalStorage (dient in diesem Client als Ersatz für die Liste) zu speichern.
+  Mit der URL wird hier über den fetch-Befehl auf den Endpoint zugegriffen und auf die Response-Nachricht gewartet. Dann wird jedes Element in der empfangenen Nachricht durchgegangen und die Variablen gelesen, um sie dann in den LocalStorage (dient in diesem Client als Ersatz für die Liste) zu speichern.
 </details>
 
 
@@ -387,44 +387,66 @@ graph TD;
 
 
 ## Diskussion der Ergebnisse
-
+Zum ersten Release wird hier die erste Version der Notiz-App vorgestellt. Die App kann sowohl über ein Programm auf den PC als auch in einem beliebigen Browser gestartet werden. Diese Lösung bietet in beiden Varianten eine ansprechende und selbsterklärende Benutzeroberfläche, um einen einfachen Betrieb zu gewährleisten. Dieses Programm basiert im Hintergrund auf einen Spring-Boot-Server, welcher für die Organisation und die Einbindung einer MongoDB-Datenbank zuständig ist. Notizen können so angelegt, geändert, erledigt oder auch gelöscht werden. Jede kleine Änderung wird sofort in der Datenbank gespeichert und kann so nicht verloren gehen. 
 
 ### Zusammenfassung
-
+Die Notiz-App bietet eine ansprechende Benutzeroberfläche für mehrere Plattformen. Durch den Spring-Boot-Server im Hintergrund wird außerdem eine ständige Synchronisation zwischen Datenbank und Clients ermöglicht.
 
 ### Hintergründe
-
+Bei der Entwicklung dieser Notiz-App wurde der Fokus auf eine benutzerfreundliche und einfache Bedienung gelegt, um dem Benutzer das Festhalten von Gedanken oder anderen Infos problemlos zu ermöglichen. Durch die verwendeten Technologien (C#, JavaScript, Spring-Boot, HTML, CSS, JavaScript, JSON) wird auch in Zukunft ein reibungsloser Betrieb gewährleistet.
 
 ### Ausblicke
-
+In Zukunft soll nicht nur einfacher Text in einer Notiz gespeichert werden, dieser soll ebenfalls je nach Belieben unterschiedlich formatiert (Schriftart, fett, kursiv, usw.) werden können. Dies wird die Benutzererfahrung um einiges erhöhen und für mehr Freude am Benutzen dieser Lösung bieten. 
 
 
 
 ## Diagramme
 
-### Klassendiagramm des WPF-Clients
+### Klassendiagramm des WPF Clients
+```mermaid
+classDiagram
+    MainWindow o-- Notiz
+```
+
+
+### Klassendiagramm des HTML Clients
 
 
 
-### Klassendiagramm des WebApp-Clients
+### Klassendiagramm des Spring-Boot-Servers
 
 
+### Sequenzdiagramm
+```mermaid
+sequenceDiagram
+    participant User
+    participant HTML- / WPF-Client
+    participant Spring-Boot-Server
+    participant MongoDB Datenbank
 
-### Klassendiagramm des Spring-Boot Servers
-
+    User->>HTML- / WPF-Client: Request
+    HTML- / WPF-Client->>Spring-Boot-Server: API Call
+    Spring-Boot-Server->>MongoDB Datenbank: Query
+    MongoDB Datenbank->>Spring-Boot-Server: Data
+    Spring-Boot-Server->>HTML- / WPF-Client: Response
+    HTML- / WPF-Client->>User: Display Data
+```
 
 
 
 
 ## Quellenverzeichnis
 
+
 ### Spring-Boot Server
 #### [Spring-Boot]()
 #### [JSON](https://www.json.org/json-en.html)
 
+
 ### WPF-Client
 #### [C#](https://learn.microsoft.com/de-de/dotnet/csharp/)
 #### [JSON](https://www.json.org/json-en.html)
+
 
 ### WebApp-Client
 #### [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
@@ -432,8 +454,10 @@ graph TD;
 #### [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 #### [JSON](https://www.json.org/json-en.html)
 
+
 ### MongoDB Datenbank
 #### [MongoDB](https://www.mongodb.com/docs/)
+
 
 ### IDE & Nuggets
 #### [IntelliJ IDEA 2024.1.1](https://www.jetbrains.com/idea/download/download-thanks.html?platform=windows)
@@ -486,20 +510,7 @@ graph TD;
 
 
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant Frontend
-    participant Backend
-    participant Database
 
-    User->>Frontend: Request
-    Frontend->>Backend: API Call
-    Backend->>Database: Query
-    Database->>Backend: Data
-    Backend->>Frontend: Response
-    Frontend->>User: Display Data
-```
 
 
 ### Notiz App
