@@ -470,8 +470,6 @@ sequenceDiagram
 
 
 
-
-
 <br>
 <br>
 <br>
@@ -480,32 +478,15 @@ sequenceDiagram
 <br>
 
 # DOKU noch nicht vollständig und fertig
+noch zu erledigen: 
+- Diagramme
+- Powerpoint Präsentation
 
 <br>
 <br>
 <br>
 <br>
 <br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
