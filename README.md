@@ -1,12 +1,6 @@
 # POS Projekt 2024 - Notiz App - Paul Wasle
-- Softwaredesign (Architektur) 
-- Beschreibung der Software (was tut sie und wozu ist sie gut) 
-- API-Beschreibung
-- Verwendung der API (ev. mit Code-Ausschnitten)
-- Ev. Diagramme (Use-Cases, Übersichtsdiagramme)
-- Diskussion der Ergebnisse (Zusammenfassung, Hintergründe, Ausblick, etc.)
-- Quellenverzeichnis / Links
-- Und wichtig: Die Grafiken müssen mittels Mermaid erstellt werden! (GitHub bietet eine Unterstützung für Mermaid-Diagramme)
+
+**Eine Notiz-App, welche im Auftrag des POS-Projektes von Paul Wasle geplant, implementiert und dokumentiert wurde.**
 
 ## Softwaredesign (Architektur)
 Die Notiz-App basiert hauptsächlich auf einen Spring-Boot-Server. Dieser bildet die Basis und stellt eine Verbindung zu einer MongoDB-Datenbank bereit. Mithilfe von Clients kann man auf diese Datenbank zugreifen und die Daten abfragen, senden, löschen oder ändern. Ein Client wurde mit C# und WPF entwickelt, der andere wurde in das Spring-Boot-Projekt direkt eingebunden und basiert auf HTML, CSS und JavaScript.
@@ -405,17 +399,17 @@ In Zukunft soll nicht nur einfacher Text in einer Notiz gespeichert werden, dies
 ### Sequenzdiagramm Übersicht alle Systeme
 ```mermaid
 sequenceDiagram
-    participant User
+    participant Benutzer
     participant HTML- / WPF-Client
     participant Spring-Boot-Server
     participant MongoDB Datenbank
 
-    User->>HTML- / WPF-Client: Request
-    HTML- / WPF-Client->>Spring-Boot-Server: API Call
-    Spring-Boot-Server->>MongoDB Datenbank: Query
-    MongoDB Datenbank->>Spring-Boot-Server: Data
-    Spring-Boot-Server->>HTML- / WPF-Client: Response
-    HTML- / WPF-Client->>User: Display Data
+    Benutzer->>HTML- / WPF-Client: Anfrage
+    HTML- / WPF-Client->>Spring-Boot-Server: API Aufruf
+    Spring-Boot-Server->>MongoDB Datenbank: DB Abfrage
+    MongoDB Datenbank->>Spring-Boot-Server: Daten
+    Spring-Boot-Server->>HTML- / WPF-Client: Antwort
+    HTML- / WPF-Client->>Benutzer: Daten anzeigen
 ```
 
 ### Klassendiagramm des WPF Clients
@@ -462,45 +456,45 @@ classDiagram
 ### Sequenzdiagramm WPF Client
 ```mermaid
 sequenceDiagram
-    participant User
+    participant Benutzer
     participant MainWindow
     participant HttpClient
     participant Server
 
-    User ->> MainWindow: Notiz anzeigen
+    Benutzer ->> MainWindow: Notiz anzeigen
     MainWindow ->> HttpClient: GET /api/notizen
     HttpClient ->> Server: Request Notizen
     Server -->> HttpClient: Response Notizen
     HttpClient -->> MainWindow: Notizen
-    MainWindow -->> User: Zeige Notizen
+    MainWindow -->> Benutzer: Zeige Notizen
 
-    User ->> MainWindow: Neue Notiz erstellen
+    Benutzer ->> MainWindow: Neue Notiz erstellen
     MainWindow ->> HttpClient: POST /api/notiz
     HttpClient ->> Server: Request Neue Notiz
     Server -->> HttpClient: Response Erfolg
     HttpClient -->> MainWindow: Erfolg
-    MainWindow -->> User: Neue Notiz erstellt
+    MainWindow -->> Benutzer: Neue Notiz erstellt
 
-    User ->> MainWindow: Notiz bearbeiten
+    Benutzer ->> MainWindow: Notiz bearbeiten
     MainWindow ->> HttpClient: PUT /api/notiz
     HttpClient ->> Server: Request Update Notiz
     Server -->> HttpClient: Response Erfolg
     HttpClient -->> MainWindow: Erfolg
-    MainWindow -->> User: Notiz aktualisiert
+    MainWindow -->> Benutzer: Notiz aktualisiert
 
-    User ->> MainWindow: Notiz löschen
+    Benutzer ->> MainWindow: Notiz löschen
     MainWindow ->> HttpClient: DELETE /api/notiz/{id}
     HttpClient ->> Server: Request Delete Notiz
     Server -->> HttpClient: Response Erfolg
     HttpClient -->> MainWindow: Erfolg
-    MainWindow -->> User: Notiz gelöscht
+    MainWindow -->> Benutzer: Notiz gelöscht
 
-    User ->> MainWindow: Notiz abhaken
+    Benutzer ->> MainWindow: Notiz abhaken
     MainWindow ->> HttpClient: PUT /api/notiz
     HttpClient ->> Server: Request Update Notiz
     Server -->> HttpClient: Response Erfolg
     HttpClient -->> MainWindow: Erfolg
-    MainWindow -->> User: Notiz abgehakt
+    MainWindow -->> Benutzer: Notiz abgehakt
 ```
 
 ### Sequenzdiagramm HTML Client
@@ -548,31 +542,7 @@ sequenceDiagram
     Client ->> Server: PUT /api/notiz mit aktualisiertem Status
     Server -->> Client: Antwort (Status aktualisiert)
     Client ->> UI: Aktualisiere lokale Notizen und Anzeige
-```
-
-```mermaid
-usecaseDiagram
-    actor Benutzer
-    actor Administrator
-
-    Benutzer --> (Notiz anzeigen)
-    Benutzer --> (Neue Notiz erstellen)
-    Benutzer --> (Notiz bearbeiten)
-    Benutzer --> (Notiz löschen)
-    Benutzer --> (Notiz abhaken)
-
-    Administrator --> (Notiz anzeigen)
-    Administrator --> (Neue Notiz erstellen)
-    Administrator --> (Notiz bearbeiten)
-    Administrator --> (Notiz löschen)
-    Administrator --> (Notiz abhaken)
-
-    (Notiz anzeigen) --> (Lade Notizen vom Server)
-    (Neue Notiz erstellen) --> (Sende POST-Anfrage)
-    (Notiz bearbeiten) --> (Sende PUT-Anfrage)
-    (Notiz löschen) --> (Sende DELETE-Anfrage)
-    (Notiz abhaken) --> (Sende PUT-Anfrage)
-```    
+```  
 
 
 
