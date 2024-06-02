@@ -402,21 +402,7 @@ In Zukunft soll nicht nur einfacher Text in einer Notiz gespeichert werden, dies
 
 ## Diagramme
 
-### Klassendiagramm des WPF Clients
-```mermaid
-classDiagram
-    MainWindow o-- Notiz
-```
-
-
-### Klassendiagramm des HTML Clients
-
-
-
-### Klassendiagramm des Spring-Boot-Servers
-
-
-### Sequenzdiagramm
+### Sequenzdiagramm Übersicht alle Systeme
 ```mermaid
 sequenceDiagram
     participant User
@@ -432,6 +418,161 @@ sequenceDiagram
     HTML- / WPF-Client->>User: Display Data
 ```
 
+### Klassendiagramm des WPF Clients
+```mermaid
+classDiagram
+    MainWindow o-- Notiz
+
+    class MainWindow {
+        -List~Notiz~ notizen
+        +static string serverAddress = "192.168.155.66"
+        +MainWindow()
+        +Task LoadData()
+        +Task~List~Notiz~~ GetNotizenAsync()
+        -void ButtonNeueNotiz_Click(object sender, RoutedEventArgs e)
+        -Task AddButton(string buttonText)
+        -Task SendPostRequest(string json)
+        -Task SendPutRequest(string json)
+        -void TrashButton_Click(object sender, RoutedEventArgs e)
+        -Task SendDeleteRequest(string id)
+        -void CheckBox_Checked(object sender, RoutedEventArgs e)
+        -void ButtonVorhandeneNotiz_Click(object sender, RoutedEventArgs e)
+    }
+
+    class Notiz {
+        +string id
+        +string title
+        +string text
+        +bool check
+        -string crlf
+        +Notiz()
+        +Notiz(string timestamp, string text, bool check)
+        +Notiz(string id, string timestamp, string text, bool check)
+        +void gsid(string value)
+        +void gstitle(string value)
+        +void gstext(string value)
+        +void gscheck(bool value)
+        +void textfield_TextChanged(object sender, TextChangedEventArgs e)
+        +Task SendPutRequest(string json)
+        +void Notiz_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        +void Replace()
+    }
+```
+
+### Sequenzdiagramm WPF Client
+```mermaid
+sequenceDiagram
+    participant User
+    participant MainWindow
+    participant HttpClient
+    participant Server
+
+    User ->> MainWindow: Notiz anzeigen
+    MainWindow ->> HttpClient: GET /api/notizen
+    HttpClient ->> Server: Request Notizen
+    Server -->> HttpClient: Response Notizen
+    HttpClient -->> MainWindow: Notizen
+    MainWindow -->> User: Zeige Notizen
+
+    User ->> MainWindow: Neue Notiz erstellen
+    MainWindow ->> HttpClient: POST /api/notiz
+    HttpClient ->> Server: Request Neue Notiz
+    Server -->> HttpClient: Response Erfolg
+    HttpClient -->> MainWindow: Erfolg
+    MainWindow -->> User: Neue Notiz erstellt
+
+    User ->> MainWindow: Notiz bearbeiten
+    MainWindow ->> HttpClient: PUT /api/notiz
+    HttpClient ->> Server: Request Update Notiz
+    Server -->> HttpClient: Response Erfolg
+    HttpClient -->> MainWindow: Erfolg
+    MainWindow -->> User: Notiz aktualisiert
+
+    User ->> MainWindow: Notiz löschen
+    MainWindow ->> HttpClient: DELETE /api/notiz/{id}
+    HttpClient ->> Server: Request Delete Notiz
+    Server -->> HttpClient: Response Erfolg
+    HttpClient -->> MainWindow: Erfolg
+    MainWindow -->> User: Notiz gelöscht
+
+    User ->> MainWindow: Notiz abhaken
+    MainWindow ->> HttpClient: PUT /api/notiz
+    HttpClient ->> Server: Request Update Notiz
+    Server -->> HttpClient: Response Erfolg
+    HttpClient -->> MainWindow: Erfolg
+    MainWindow -->> User: Notiz abgehakt
+```
+
+### Sequenzdiagramm HTML Client
+
+```mermaid
+sequenceDiagram
+    participant Benutzer
+    participant UI
+    participant Client as Skript
+    participant Server
+
+    Benutzer ->> UI: Klick auf "addBox"
+    UI ->> Client: Zeige Popup für neue Notiz
+    Client ->> Benutzer: Zeige Popup
+
+    Benutzer ->> UI: Eingabe von Titel und Beschreibung
+    Benutzer ->> UI: Klick auf "Add Note"
+    UI ->> Client: Sammle Notizdaten
+    Client ->> Server: POST /api/notiz mit Notizdaten
+    Server -->> Client: Antwort (Notiz hinzugefügt)
+    Client ->> UI: Aktualisiere lokale Notizen und Anzeige
+
+    Benutzer ->> UI: Klick auf "Edit" bei einer Notiz
+    UI ->> Client: Zeige Popup mit Notizdetails
+    Client ->> Benutzer: Zeige Popup mit Notizdaten
+
+    Benutzer ->> UI: Aktualisiere Titel und Beschreibung
+    Benutzer ->> UI: Klick auf "Update Note"
+    UI ->> Client: Sammle aktualisierte Notizdaten
+    Client ->> Server: PUT /api/notiz mit aktualisierten Notizdaten
+    Server -->> Client: Antwort (Notiz aktualisiert)
+    Client ->> UI: Aktualisiere lokale Notizen und Anzeige
+
+    Benutzer ->> UI: Klick auf "Delete" bei einer Notiz
+    UI ->> Client: Bestätige Löschung
+    Client ->> Benutzer: Bestätigungsdialog
+    Benutzer ->> UI: Bestätigung der Löschung
+    UI ->> Client: Lösche Notiz lokal
+    Client ->> Server: DELETE /api/notiz/{id}
+    Server -->> Client: Antwort (Notiz gelöscht)
+    Client ->> UI: Aktualisiere lokale Notizen und Anzeige
+
+    Benutzer ->> UI: Markiere/Entmarkiere eine Notiz
+    UI ->> Client: Aktualisiere Notizstatus
+    Client ->> Server: PUT /api/notiz mit aktualisiertem Status
+    Server -->> Client: Antwort (Status aktualisiert)
+    Client ->> UI: Aktualisiere lokale Notizen und Anzeige
+```
+
+```mermaid
+usecaseDiagram
+    actor Benutzer
+    actor Administrator
+
+    Benutzer --> (Notiz anzeigen)
+    Benutzer --> (Neue Notiz erstellen)
+    Benutzer --> (Notiz bearbeiten)
+    Benutzer --> (Notiz löschen)
+    Benutzer --> (Notiz abhaken)
+
+    Administrator --> (Notiz anzeigen)
+    Administrator --> (Neue Notiz erstellen)
+    Administrator --> (Notiz bearbeiten)
+    Administrator --> (Notiz löschen)
+    Administrator --> (Notiz abhaken)
+
+    (Notiz anzeigen) --> (Lade Notizen vom Server)
+    (Neue Notiz erstellen) --> (Sende POST-Anfrage)
+    (Notiz bearbeiten) --> (Sende PUT-Anfrage)
+    (Notiz löschen) --> (Sende DELETE-Anfrage)
+    (Notiz abhaken) --> (Sende PUT-Anfrage)
+```    
 
 
 
@@ -460,10 +601,10 @@ sequenceDiagram
 
 
 ### IDE & Nuggets
-#### [IntelliJ IDEA 2024.1.1](https://www.jetbrains.com/idea/download/download-thanks.html?platform=windows)
+#### [IntelliJ IDEA 2022.2.1](https://www.jetbrains.com/idea/download/download-thanks.html?platform=windows)
    - ###### [Spring Boot Starter Data MongoDB 3.2.5](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb/1.1.0.RELEASE)
    - ###### [Spring Boot Starter Web 3.2.5](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web)
-#### [Visual Studio 2022 17.9.7](https://visualstudio.microsoft.com/de/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false)
+#### [Visual Studio 2022 17.10.0](https://visualstudio.microsoft.com/de/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false)
 
 
 

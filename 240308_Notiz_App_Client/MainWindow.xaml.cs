@@ -85,11 +85,6 @@ namespace _240308_Notiz_App_Client
             }
         }
 
-        public void CheckNotiz()
-        {
-
-        }
-
         public async Task<List<Notiz>> GetNotizenAsync()
         {
             List<Notiz> notizen = new List<Notiz>();
@@ -410,13 +405,6 @@ namespace _240308_Notiz_App_Client
                 notizen = notizenneu;
             }
 
-        }
-
-
-        public async void TextChanged(string text, Notiz notiz)
-        {
-            string json = $"{{\"id\":\"{notiz.gsid}\",\"title\":\"{notiz.gstitle}\",\"text\":\"{notiz.gstext}\",\"check\":{notiz.gscheck.ToString().ToLower()}}}";
-            await SendPutRequest(json);
         }
     }
 }
